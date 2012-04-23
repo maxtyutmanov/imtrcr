@@ -14,6 +14,8 @@ namespace Imaging {
         std::wstring GetFilePath() const {
             return filePath;
         }
+        
+        virtual ~FileNotFoundException() throw() {}
     private:
         std::wstring filePath;
     };

@@ -15,7 +15,7 @@ namespace Imaging {
         //inherited
         virtual ArgbQuad GetColor(image_size_t x, image_size_t y) const;
         //loads bitmap from the specified stream
-        static WinBMP FromStream(std::istream& input);
+        static WinBMP* FromStream(std::istream& input);
 
         virtual ~WinBMP();
     private:

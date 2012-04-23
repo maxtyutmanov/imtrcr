@@ -41,7 +41,7 @@ namespace Imaging {
         return colorTable->GetColor(dataPtr);
     }
 
-    WinBMP WinBMP::FromStream(istream& input) {
+    WinBMP* WinBMP::FromStream(istream& input) {
         //check the stream
 
         if (!input.good()) {
@@ -94,7 +94,7 @@ namespace Imaging {
 
         //convert image data to RGB triples
 
-        return WinBMP(bmpInfoH.biWidth, bmpInfoH.biHeight, imageData, colorTable, bmpInfoH.biBitCount);
+        return new WinBMP(bmpInfoH.biWidth, bmpInfoH.biHeight, imageData, colorTable, bmpInfoH.biBitCount);
     }
 }
 }

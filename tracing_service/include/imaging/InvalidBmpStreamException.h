@@ -10,6 +10,8 @@ namespace Imaging {
     public: 
         InvalidBmpStreamException(const std::string& message) 
             : std::runtime_error(message) {}
+            
+        virtual ~InvalidBmpStreamException() throw() {}
     };
 
 }

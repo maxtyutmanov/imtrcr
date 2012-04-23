@@ -17,6 +17,8 @@ namespace Imaging {
         image_size_t GetY() const {
             return y;
         }
+        
+        virtual ~PointOutOfBitmapException() throw() {}
     private:
         image_size_t x;
         image_size_t y;
