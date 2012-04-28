@@ -1,7 +1,7 @@
 #pragma once
 
-#include <VectorImage.h>
-#include <RasterImage.h>
+#include <imaging/VectorImage.h>
+#include <imaging/RasterImage.h>
 
 namespace ImTrcr {
 namespace Vectorization {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common.h"
+#include "imaging/Common.h"
 
 namespace ImTrcr {
 namespace Imaging {

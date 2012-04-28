@@ -1,6 +1,6 @@
-#include "PotraceTracer.h"
-#include "WinBMP.h"
-#include "VectorImage.h"
+#include "vectorization/PotraceTracer.h"
+#include "imaging/WinBMP.h"
+#include "imaging/VectorImage.h"
 #include <fstream>
 #include <iostream>
 

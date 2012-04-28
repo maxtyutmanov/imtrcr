@@ -1,7 +1,7 @@
 #pragma once
 
 #include <stdexcept>
-#include "Common.h"
+#include "imaging/Common.h"
 
 namespace ImTrcr {
 namespace Imaging {

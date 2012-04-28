@@ -1,5 +1,5 @@
-#include "WinBmpColorTable.h"
-#include "InvalidBmpStreamException.h"
+#include "imaging/WinBmpColorTable.h"
+#include "imaging/InvalidBmpStreamException.h"
 
 using namespace std;
 

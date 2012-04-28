@@ -1,7 +1,7 @@
 #pragma once
 
-#include "VectorImage.h"
-#include <tinyxml.h>
+#include "imaging/VectorImage.h"
+#include "tinyxml/tinyxml.h"
 
 namespace ImTrcr {
 namespace Imaging {

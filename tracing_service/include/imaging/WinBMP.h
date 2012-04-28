@@ -1,8 +1,8 @@
 #pragma once
 
-#include "RasterImage.h"
-#include "ArgbQuad.h"
-#include "WinBmpColorTable.h"
+#include "imaging/RasterImage.h"
+#include "imaging/ArgbQuad.h"
+#include "imaging/WinBmpColorTable.h"
 #include <string>
 #include <vector>
 

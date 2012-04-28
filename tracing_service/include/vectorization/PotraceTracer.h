@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ITracer.h"
+#include "vectorization/ITracer.h"
 
 namespace ImTrcr {
 namespace Vectorization {

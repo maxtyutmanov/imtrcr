@@ -1,0 +1,15 @@
+# compiled sources #
+*.o
+*.a
+*.so
+*.out
+*/bin/*
+*/obj/*
+
+# databases #
+*.sqlite
+
+*~
+*.gch
+
+

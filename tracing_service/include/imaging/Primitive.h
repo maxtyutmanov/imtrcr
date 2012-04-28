@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ArgbQuad.h"
+#include "imaging/ArgbQuad.h"
 
 namespace ImTrcr {
 namespace Imaging {

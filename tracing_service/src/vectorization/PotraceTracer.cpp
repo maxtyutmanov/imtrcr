@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PotraceTracer.h"
+#include "vectorization/PotraceTracer.h"
 
 using namespace ImTrcr::Imaging;
 

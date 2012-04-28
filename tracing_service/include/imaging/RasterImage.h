@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Common.h"
-#include "ArgbQuad.h"
+#include "imaging/Common.h"
+#include "imaging/ArgbQuad.h"
 #include <iostream>
 #include <boost/noncopyable.hpp>
 

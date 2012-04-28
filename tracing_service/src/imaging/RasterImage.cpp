@@ -1,5 +1,5 @@
-#include "RasterImage.h"
-#include "PointOutOfBitmapException.h"
+#include "imaging/RasterImage.h"
+#include "imaging/PointOutOfBitmapException.h"
 
 using namespace std;
 

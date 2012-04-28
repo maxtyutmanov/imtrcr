@@ -1,10 +1,11 @@
 #pragma once
 
-#include "WinBMP.h"
-#include "WinBmpStructs.h"
+#include "imaging/WinBMP.h"
+#include "imaging/WinBmpStructs.h"
+#include "imaging/FileNotFoundException.h"
+#include "imaging/InvalidBmpStreamException.h"
+
 #include <fstream>
-#include "FileNotFoundException.h"
-#include "InvalidBmpStreamException.h"
 #include <boost/filesystem.hpp>
 
 using namespace std;

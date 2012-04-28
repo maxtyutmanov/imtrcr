@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Primitive.h"
-#include "Point2F.h"
+#include "imaging/Primitive.h"
+#include "imaging/Point2F.h"
 #include <vector>
 
 namespace ImTrcr {

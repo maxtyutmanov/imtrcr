@@ -1,6 +1,7 @@
 #pragma once
 
-#include "ISvgSerializer.h"
+#include "imaging/ISvgSerializer.h"
+#include "tinyxml/tinyxml.h"
 
 namespace ImTrcr {
 namespace Imaging {

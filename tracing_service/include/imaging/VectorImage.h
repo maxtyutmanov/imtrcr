@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Primitive.h"
+#include "imaging/Primitive.h"
 #include <vector>
 
 namespace ImTrcr {
