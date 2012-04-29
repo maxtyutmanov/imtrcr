@@ -81,6 +81,9 @@ CXXFLAGS := ${CXXFLAGS} ${DEFS}
 # Targets of the build
 #****************************************************************************
 
+create_archive: all
+	ar -cvq ../libtinyxml.a *.o
+
 OUTPUT := xmltest
 
 all: ${OUTPUT}
@@ -120,6 +123,7 @@ dist:
 
 clean:
 	-rm -f core ${OBJS} ${OUTPUT}
+	rm -rf ../libtinyxml.a
 
 depend:
 	#makedepend ${INCS} ${SRCS}

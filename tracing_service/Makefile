@@ -12,31 +12,34 @@ libraries := -lboost_system -lboost_filesystem
 relative_include_dirs := $(addprefix ../../, $(root_include_dir) $(root_libs_include_dir))
 #prj/src/imaging/...
 relative_source_dirs := $(addprefix ../../$(root_source_dir)/, $(source_subdirs))
+relative_libs_dirs := $(addprefix ../../$(root_libs_dir)/, $(libs_names))
 #prj/obj/Debug|Release/src/imaging/...
 objects_dirs := $(addprefix $(root_source_dir)/, $(source_subdirs))
 objects := $(patsubst ../../%, %, $(wildcard $(addsuffix /*.cpp, $(relative_source_dirs))))
 objects := $(objects:.cpp=.o)
+libs_archives := $(addprefix ../../$(root_libs_dir)/lib, $(libs_names))
+libs_archives := $(addsuffix .a, $(libs_archives))
 
 all : $(program_name)
 
-$(program_name) : obj_dirs build_libs $(objects)
-	g++ -o $@ $(objects) $(link_flags) $(libraries)
+$(program_name) : obj_dirs $(libs_archives) $(objects)
+	g++ -o $@ $(objects) $(link_flags) $(libraries) $(libs_archives)
 
 obj_dirs :
 	mkdir -p $(objects_dirs)
 
-.PHONY : build_libs
-build_libs :
-	$(foreach lib_dir, $(relative_libs_dirs), make --directory=$(lib_dir) --makefile=$(lib_dir)/Makefile)
+$(libs_archives) :
+	$(foreach lib_dir, $(relative_libs_dirs), make --directory=$(lib_dir) create_archive)
 
 VPATH = ../../
 
 %.o : %.cpp
-	g++ -o $@ -c $< $(compile_flags) $(build_flags) $(addprefix -I, $(relative_include_dirs))
+	g++ -o $@ -c $< $(compile_flags) $(build_flags) $(addprefix -I, $(relative_include_dirs)) $(libs_archives)
 
 .PHONY : clean
 
 clean :
 	rm -rf bin obj
+	$(foreach lib_dir, $(addprefix $(root_libs_dir)/, $(lib_names)), make --directory=$(lib_dir) clean)
 
 include $(wildcard $(addsuffix /*.d, $(objects_dirs)))

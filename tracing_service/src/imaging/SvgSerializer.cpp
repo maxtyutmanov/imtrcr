@@ -4,7 +4,7 @@ namespace ImTrcr {
 namespace Imaging {
 
   TiXmlDocument* SvgSerializer::Serialize(const Imaging::VectorImage& vectorImage) const {
-    return NULL;
+    return new TiXmlDocument();
   }
   
 }
