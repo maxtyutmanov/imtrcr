@@ -89,8 +89,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="24bit.bmp" />
-    <None Include="8bit.bmp" />
+    <None Include="..\..\misc\test_move_to_output\24bit.bmp" />
+    <None Include="..\..\misc\test_move_to_output\8bit.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

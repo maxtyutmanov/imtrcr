@@ -24,6 +24,9 @@
       <Project>{1442683a-af37-4000-a5b3-a3ee78cd4a6e}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\misc\imtrcr_soap.wsdl" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2E31237F-E7B3-4431-A7C0-CC6942459819}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
