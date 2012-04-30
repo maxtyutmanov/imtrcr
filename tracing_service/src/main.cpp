@@ -18,6 +18,21 @@ int main() {
 
   cout << "Width: " << img->GetWidth() << "; Height: " << img->GetHeight() << endl;
 
+  while (true) {
+      int x;
+      int y;
+
+      cin >> x >> y;
+
+      if (x == -1 && y == -1) {
+          break;
+      }
+
+      ArgbQuad color = img->GetColor(x, y);
+
+      cout << "Red: " << (int)color.red << " Green: " << (int)color.green << " Blue: " << (int)color.blue << endl;
+  }
+
   delete img;
   delete tracer;
   delete vectImg;

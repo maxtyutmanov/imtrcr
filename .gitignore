@@ -5,6 +5,16 @@
 *.out
 */bin/*
 */obj/*
+*.obj
+*.exe
+*.lib
+*.vcproj
+*.sln
+*.bak
+*.suo
+*.sdf
+*.opensdf
+*.bak
 
 # databases #
 *.sqlite
@@ -13,3 +23,7 @@
 *.gch
 
 
+
+/tracing_service/Debug
+/tracing_service/vs_prjs/*/Debug
+/tracing_service/ipch

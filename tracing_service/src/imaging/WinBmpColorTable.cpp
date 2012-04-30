@@ -66,7 +66,7 @@ namespace Imaging {
 
             return new WinBmpColorTable(bitsPerPixel, colorTable);
         }
-        else if (bitsPerPixel == 24) {
+        else if (bitsPerPixel == 24 || bitsPerPixel == 32) {
             return new WinBmpColorTable(bitsPerPixel, vector<ArgbQuad>());
         }
         else {

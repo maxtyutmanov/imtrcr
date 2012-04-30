@@ -17,9 +17,9 @@ namespace Imaging {
         static WinBmpColorTable* FromStream(byte bitsPerPixel, unsigned long numberOfColors, std::istream& input);
     private:
         WinBmpColorTable(byte bitsPerPixel, const std::vector<ArgbQuad>& colorTable);
+
         std::vector<ArgbQuad> table;
         byte bitsPerPixel;
-        bool indexed;
     };
 
 }
