@@ -12,6 +12,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\soap_service\soapC.cpp" />
+    <ClCompile Include="..\..\src\soap_service\soapServer.cpp" />
+    <ClCompile Include="..\..\src\soap_service\stdsoap2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\imtrcr.imaging\imtrcr.imaging.vcxproj">
@@ -26,6 +29,14 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\misc\imtrcr_soap.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\soap_service\soapH.h" />
+    <ClInclude Include="..\..\include\soap_service\soapImTrcrSoapBindingObject.h" />
+    <ClInclude Include="..\..\include\soap_service\soapStub.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\include\soap_service\ImTrcrSoapBinding.nsmap" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2E31237F-E7B3-4431-A7C0-CC6942459819}</ProjectGuid>
@@ -57,7 +68,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;$(SolutionDir)\include;$(BoostIncludeDir)</IncludePath>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;$(SolutionDir)\include;$(BoostIncludeDir);$(SolutionDir)\include\soap_service</IncludePath>
     <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(BoostLibDir)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
