@@ -27,3 +27,4 @@
 /tracing_service/Debug
 /tracing_service/vs_prjs/*/Debug
 /tracing_service/ipch
+/tracing_service/misc/win_gsoap/generated

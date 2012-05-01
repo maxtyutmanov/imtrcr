@@ -12,14 +12,14 @@ namespace Imaging {
     class WinBmpColorTable {
     public:
         //transforms raw bitmap data to color info
-        ArgbQuad GetColor(byte* dataPtr) const;
+        ArgbQuad GetColor(Utils::byte* dataPtr) const;
 
-        static WinBmpColorTable* FromStream(byte bitsPerPixel, unsigned long numberOfColors, std::istream& input);
+        static WinBmpColorTable* FromStream(Utils::byte bitsPerPixel, unsigned long numberOfColors, std::istream& input);
     private:
-        WinBmpColorTable(byte bitsPerPixel, const std::vector<ArgbQuad>& colorTable);
+        WinBmpColorTable(Utils::byte bitsPerPixel, const std::vector<ArgbQuad>& colorTable);
 
         std::vector<ArgbQuad> table;
-        byte bitsPerPixel;
+        Utils::byte bitsPerPixel;
     };
 
 }

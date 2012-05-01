@@ -24,10 +24,11 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="svgXml" type="xsd:string" />
+            <xsd:element name="statusCode" type="xsd:integer" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      
+
     </xsd:schema>
     
   </wsdl:types>

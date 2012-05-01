@@ -11,45 +11,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\main.cpp" />
-    <ClCompile Include="..\..\src\soap_service\soapC.cpp" />
-    <ClCompile Include="..\..\src\soap_service\soapServer.cpp" />
-    <ClCompile Include="..\..\src\soap_service\stdsoap2.cpp" />
+    <ClInclude Include="..\..\include\utils\base64.h" />
+    <ClInclude Include="..\..\include\utils\Common.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\imtrcr.imaging\imtrcr.imaging.vcxproj">
-      <Project>{58ecb5d2-a611-4350-a8de-8fd56c4a59d7}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\imtrcr.utils\imtrcr.utils.vcxproj">
-      <Project>{94f9e52a-e4cd-47ce-ae7f-07fc422ba02b}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\imtrcr.vectorization\imtrcr.vectorization.vcxproj">
-      <Project>{61b68d44-90e2-4a66-a628-9407f70aaa79}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\tinyxml\tinyxml.vcxproj">
-      <Project>{1442683a-af37-4000-a5b3-a3ee78cd4a6e}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\..\misc\imtrcr_soap.wsdl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\include\soap_service\soapH.h" />
-    <ClInclude Include="..\..\include\soap_service\soapImTrcrSoapBindingObject.h" />
-    <ClInclude Include="..\..\include\soap_service\soapStub.h" />
-    <ClInclude Include="..\..\include\soap_service\StatusCodes.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\include\soap_service\ImTrcrSoapBinding.nsmap" />
+    <ClCompile Include="..\..\src\utils\base64.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2E31237F-E7B3-4431-A7C0-CC6942459819}</ProjectGuid>
+    <ProjectGuid>{94F9E52A-E4CD-47CE-AE7F-07FC422BA02B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>imtrcrsoap_service</RootNamespace>
+    <RootNamespace>imtrcrutils</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -72,7 +47,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;$(SolutionDir)\include;$(BoostIncludeDir);$(SolutionDir)\include\soap_service;$(SolutionDir)\lib</IncludePath>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;$(SolutionDir)\include;$(BoostIncludeDir)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(BoostLibDir)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -84,7 +61,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>

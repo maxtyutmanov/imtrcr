@@ -19,10 +19,10 @@ namespace Imaging {
 
         virtual ~WinBMP();
     private:
-        WinBMP(image_size_t width, image_size_t height, byte* bmpData, WinBmpColorTable* colorTable, byte bitsPerPixel);
+        WinBMP(image_size_t width, image_size_t height, Utils::byte* bmpData, WinBmpColorTable* colorTable, Utils::byte bitsPerPixel);
 
-        byte bitsPerPixel;
-        byte* bmpData;
+        Utils::byte bitsPerPixel;
+        Utils::byte* bmpData;
         WinBmpColorTable* colorTable;
     };
 

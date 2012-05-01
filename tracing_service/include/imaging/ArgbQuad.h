@@ -13,10 +13,10 @@ namespace Imaging {
             blue = 0;
         }
 
-        ArgbQuad(unsigned char alpha, unsigned char red, unsigned char green, unsigned char blue)
+        ArgbQuad(Utils::byte alpha, Utils::byte red, Utils::byte green, Utils::byte blue)
             : alpha(alpha), red(red), green(green), blue(blue) {}
 
-        ArgbQuad(unsigned char red, unsigned char green, unsigned char blue)
+        ArgbQuad(Utils::byte red, Utils::byte green, Utils::byte blue)
             : alpha(255), red(red), green(green), blue(blue) {}
 
         bool operator == (const ArgbQuad& right) {
@@ -27,10 +27,10 @@ namespace Imaging {
             return !(*this == right);
         }
 
-        byte red;
-        byte green;
-        byte blue;
-        byte alpha;
+        Utils::byte red;
+        Utils::byte green;
+        Utils::byte blue;
+        Utils::byte alpha;
     };
 }
 }

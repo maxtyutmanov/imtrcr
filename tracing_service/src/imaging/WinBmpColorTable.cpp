@@ -2,6 +2,7 @@
 #include "imaging/InvalidBmpStreamException.h"
 
 using namespace std;
+using namespace ImTrcr::Utils;
 
 namespace ImTrcr {
 namespace Imaging {
