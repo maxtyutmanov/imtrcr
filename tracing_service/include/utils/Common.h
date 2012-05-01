@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UTILS_COMMON_H
+#define UTILS_COMMON_H
 
 namespace ImTrcr {
 namespace Utils {
@@ -9,3 +10,5 @@ namespace Utils {
 
 }
 }
+
+#endif

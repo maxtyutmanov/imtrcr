@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGING_WIN_BMP_H
+#define IMAGING_WIN_BMP_H
 
 #include "imaging/RasterImage.h"
 #include "imaging/ArgbQuad.h"
@@ -28,3 +29,5 @@ namespace Imaging {
 
 }
 }
+
+#endif

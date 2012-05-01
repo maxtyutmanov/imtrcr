@@ -1,3 +1,4 @@
+#include "imaging/Common.h"
 #include "imaging/WinBmpColorTable.h"
 #include "imaging/InvalidBmpStreamException.h"
 

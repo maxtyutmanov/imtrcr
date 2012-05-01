@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGING_PRIMITIVE_H
+#define IMAGING_PRIMITIVE_H
 
 #include "imaging/ArgbQuad.h"
 
@@ -24,3 +25,5 @@ namespace Imaging {
 
 }
 }
+
+#endif

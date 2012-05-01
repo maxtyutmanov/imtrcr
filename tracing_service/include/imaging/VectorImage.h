@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGING_VECTOR_IMAGE_H
+#define IMAGING_VECTOR_IMAGE_H
 
 #include "imaging/Primitive.h"
 #include <vector>
@@ -18,3 +19,5 @@ namespace Imaging {
 
 }
 }
+
+#endif

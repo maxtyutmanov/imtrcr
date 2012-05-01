@@ -1,6 +1,8 @@
-#pragma once
+#ifndef IMAGING_ARGB_QUAD_H
+#define IMAGING_ARGB_QUAD_H
 
 #include "imaging/Common.h"
+//#include "utils/Common.h"
 
 namespace ImTrcr {
 namespace Imaging {
@@ -34,3 +36,5 @@ namespace Imaging {
     };
 }
 }
+
+#endif

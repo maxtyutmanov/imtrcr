@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGING_WIN_BMP_STRUCTS_H
+#define IMAGING_WIN_BMP_STRUCTS_H
 
 namespace ImTrcr {
 namespace Imaging {
@@ -32,3 +33,5 @@ namespace Imaging {
     } BITMAPINFOHEADER;
 }
 }
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UTILS_BASE64_H
+#define UTILS_BASE64_H
 
 #include <utils/Common.h>
 #include <string>
@@ -17,3 +18,5 @@ namespace Utils {
 
 }
 }
+
+#endif

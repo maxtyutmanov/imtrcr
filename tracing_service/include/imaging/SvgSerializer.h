@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGING_SVG_SERIALIZER_H
+#define IMAGING_SVG_SERIALIZER_H
 
 #include "imaging/ISvgSerializer.h"
 #include "tinyxml/tinyxml.h"
@@ -13,3 +14,5 @@ namespace Imaging {
 
 }
 }
+
+#endif

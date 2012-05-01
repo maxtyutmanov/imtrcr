@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGING_FILE_NOT_FOUND_EXCEPTION_H
+#define IMAGING_FILE_NOT_FOUND_EXCEPTION_H
 
 #include <stdexcept>
 #include <string>
@@ -22,3 +23,5 @@ namespace Imaging {
 
 }
 }
+
+#endif

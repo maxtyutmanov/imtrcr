@@ -3,7 +3,7 @@ root_source_dir := src
 root_libs_dir := lib
 root_libs_include_dir := $(root_libs_dir)
 libs_names := tinyxml
-source_subdirs := . imaging vectorization
+source_subdirs := . imaging vectorization utils soap_service
 compile_flags := -Wall -MD -pipe
 link_flags := -s -pipe
 libraries := -lboost_system -lboost_filesystem
@@ -34,7 +34,7 @@ $(libs_archives) :
 VPATH = ../../
 
 %.o : %.cpp
-	g++ -o $@ -c $< $(compile_flags) $(build_flags) $(addprefix -I, $(relative_include_dirs)) $(libs_archives)
+	g++ -o $@ -c $< $(compile_flags) $(build_flags) $(addprefix -I, $(relative_include_dirs) $(patsubst ../../src/%, ../../include/%, $(dir $<))) $(libs_archives)
 
 .PHONY : clean
 

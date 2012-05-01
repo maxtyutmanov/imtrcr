@@ -5,6 +5,8 @@
 #include "imaging/FileNotFoundException.h"
 #include "imaging/InvalidBmpStreamException.h"
 
+#include "utils/Common.h"
+
 #include <fstream>
 #include <boost/filesystem.hpp>
 

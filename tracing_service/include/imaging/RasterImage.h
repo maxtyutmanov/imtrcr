@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGING_RASTER_IMAGE_H
+#define IMAGING_RASTER_IMAGE_H
 
 #include "imaging/Common.h"
 #include "imaging/ArgbQuad.h"
@@ -30,3 +31,5 @@ namespace Imaging {
     };
 }
 }
+
+#endif

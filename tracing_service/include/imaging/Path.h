@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGING_PRIMITIVES_PATH_H
+#define IMAGING_PRIMITIVES_PATH_H
 
 #include "imaging/Primitive.h"
 #include "imaging/Point2F.h"
@@ -34,3 +35,5 @@ namespace Primitives {
 }
 }
 }
+
+#endif

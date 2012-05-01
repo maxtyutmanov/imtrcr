@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGING_POINT2F_H
+#define IMAGING_POINT2F_H
 
 namespace ImTrcr {
 namespace Imaging {
@@ -19,3 +20,5 @@ namespace Imaging {
 
 }
 }
+
+#endif

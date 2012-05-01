@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VECTORIZATION_POTRACE_TRACER_H
+#define VECTORIZATION_POTRACE_TRACER_H
 
 #include "vectorization/ITracer.h"
 
@@ -13,3 +14,5 @@ namespace Vectorization {
 
 }
 }
+
+#endif

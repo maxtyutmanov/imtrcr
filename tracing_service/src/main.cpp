@@ -67,7 +67,7 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-int __cdecl __ns1__Trace(struct soap* soap, _ns2__Trace* request, _ns2__TraceResponse* response) {
+int __ns1__Trace(struct soap* soap, _ns2__Trace* request, _ns2__TraceResponse* response) {
 
     //decode image data from base64
     string decodedImgData;

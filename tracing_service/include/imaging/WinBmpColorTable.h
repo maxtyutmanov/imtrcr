@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGING_WIN_BMP_COLOR_TABLE_H
+#define IMAGING_WIN_BMP_COLOR_TABLE_H
 
 #include "imaging/Common.h"
 #include "imaging/ArgbQuad.h"
@@ -24,3 +25,5 @@ namespace Imaging {
 
 }
 }
+
+#endif

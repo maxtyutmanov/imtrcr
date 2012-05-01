@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGING_POINT_OUT_OF_BITMAP_EXCEPTION_H
+#define IMAGING_POINT_OUT_OF_BITMAP_EXCEPTION_H
 
 #include <stdexcept>
 #include "imaging/Common.h"
@@ -26,3 +27,5 @@ namespace Imaging {
 
 }
 }
+
+#endif

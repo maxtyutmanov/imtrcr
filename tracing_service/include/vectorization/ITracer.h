@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VECTORIZATION_ITRACER_H
+#define VECTORIZATION_ITRACER_H
 
 #include <imaging/VectorImage.h>
 #include <imaging/RasterImage.h>
@@ -15,3 +16,5 @@ namespace Vectorization {
 
 }
 }
+
+#endif

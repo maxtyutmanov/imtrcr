@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGING_INVALID_BMP_STREAM_EXCEPTION_H
+#define IMAGING_INVALID_BMP_STREAM_EXCEPTION_H
 
 #include <stdexcept>
 #include <string>
@@ -16,3 +17,5 @@ namespace Imaging {
 
 }
 }
+
+#endif
