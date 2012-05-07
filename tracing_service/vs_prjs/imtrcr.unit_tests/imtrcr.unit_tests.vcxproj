@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;$(SolutionDir)\include;$(BoostIncludeDir)</IncludePath>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;$(SolutionDir)\include;$(BoostIncludeDir);$(SolutionDir)\lib;$(SolutionDir)\include\soap_service;$(SolutionDir)\lib</IncludePath>
     <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(BoostLibDir)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -59,6 +59,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -79,13 +82,34 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\unit_tests\bmp_tests.cpp" />
+    <ClCompile Include="..\..\src\unit_tests\soap_service_tests.cpp" />
+    <ClCompile Include="..\..\src\unit_tests\svg_serializer_tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\imtrcr.imaging\imtrcr.imaging.vcxproj">
       <Project>{58ecb5d2-a611-4350-a8de-8fd56c4a59d7}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\imtrcr.soap_service\imtrcr.soap_service.vcxproj">
+      <Project>{2e31237f-e7b3-4431-a7c0-cc6942459819}</Project>
+      <Private>true</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\imtrcr.utils\imtrcr.utils.vcxproj">
+      <Project>{94f9e52a-e4cd-47ce-ae7f-07fc422ba02b}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\imtrcr.vectorization\imtrcr.vectorization.vcxproj">
       <Project>{61b68d44-90e2-4a66-a628-9407f70aaa79}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\tinyxml\tinyxml.vcxproj">
+      <Project>{1442683a-af37-4000-a5b3-a3ee78cd4a6e}</Project>
+      <Private>true</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

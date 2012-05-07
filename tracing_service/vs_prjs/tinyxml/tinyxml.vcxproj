@@ -15,7 +15,6 @@
     <ClCompile Include="..\..\lib\tinyxml\tinyxml.cpp" />
     <ClCompile Include="..\..\lib\tinyxml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\lib\tinyxml\tinyxmlparser.cpp" />
-    <ClCompile Include="..\..\lib\tinyxml\xmltest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\lib\tinyxml\tinystr.h" />

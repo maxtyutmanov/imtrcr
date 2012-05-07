@@ -11,18 +11,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{58ECB5D2-A611-4350-A8DE-8FD56C4A59D7}</ProjectGuid>
+    <ProjectGuid>{74923788-9589-43D8-88D9-7A2C60C07D72}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>imtrcrimaging</RootNamespace>
+    <RootNamespace>imtrcrtracing_service_cui</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
@@ -40,8 +40,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;$(SolutionDir)\include;$(BoostIncludeDir);$(SolutionDir)\lib</IncludePath>
-    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(BoostLibDir)</LibraryPath>
+    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(BoostLibDir);</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -49,10 +53,10 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -64,47 +68,36 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\imaging\ArgbQuad.h" />
-    <ClInclude Include="..\..\include\imaging\Common.h" />
-    <ClInclude Include="..\..\include\imaging\FileNotFoundException.h" />
-    <ClInclude Include="..\..\include\imaging\InvalidBmpStreamException.h" />
-    <ClInclude Include="..\..\include\imaging\ISvgSerializer.h" />
-    <ClInclude Include="..\..\include\imaging\Path.h" />
-    <ClInclude Include="..\..\include\imaging\PathCommand.h" />
-    <ClInclude Include="..\..\include\imaging\PathSerializer.h" />
-    <ClInclude Include="..\..\include\imaging\Point2F.h" />
-    <ClInclude Include="..\..\include\imaging\PointOutOfBitmapException.h" />
-    <ClInclude Include="..\..\include\imaging\Primitive.h" />
-    <ClInclude Include="..\..\include\imaging\RasterImage.h" />
-    <ClInclude Include="..\..\include\imaging\SvgSerializer.h" />
-    <ClInclude Include="..\..\include\imaging\VectorImage.h" />
-    <ClInclude Include="..\..\include\imaging\WinBMP.h" />
-    <ClInclude Include="..\..\include\imaging\WinBmpColorTable.h" />
-    <ClInclude Include="..\..\include\imaging\WinBmpStructs.h" />
+    <ClCompile Include="..\..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\imaging\Path.cpp" />
-    <ClCompile Include="..\..\src\imaging\PathCommand.cpp" />
-    <ClCompile Include="..\..\src\imaging\PathSerializer.cpp" />
-    <ClCompile Include="..\..\src\imaging\Point2F.cpp" />
-    <ClCompile Include="..\..\src\imaging\Primitive.cpp" />
-    <ClCompile Include="..\..\src\imaging\RasterImage.cpp" />
-    <ClCompile Include="..\..\src\imaging\SvgSerializer.cpp" />
-    <ClCompile Include="..\..\src\imaging\VectorImage.cpp" />
-    <ClCompile Include="..\..\src\imaging\WinBMP.cpp" />
-    <ClCompile Include="..\..\src\imaging\WinBmpColorTable.cpp" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\imtrcr.imaging\imtrcr.imaging.vcxproj">
+      <Project>{58ecb5d2-a611-4350-a8de-8fd56c4a59d7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\imtrcr.soap_service\imtrcr.soap_service.vcxproj">
+      <Project>{2e31237f-e7b3-4431-a7c0-cc6942459819}</Project>
+      <Private>true</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\imtrcr.utils\imtrcr.utils.vcxproj">
+      <Project>{94f9e52a-e4cd-47ce-ae7f-07fc422ba02b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\imtrcr.vectorization\imtrcr.vectorization.vcxproj">
+      <Project>{61b68d44-90e2-4a66-a628-9407f70aaa79}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\tinyxml\tinyxml.vcxproj">
       <Project>{1442683a-af37-4000-a5b3-a3ee78cd4a6e}</Project>
     </ProjectReference>

@@ -27,9 +27,6 @@
     <ClCompile Include="..\..\lib\tinyxml\tinyxmlparser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\tinyxml\xmltest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\lib\tinyxml\tinystr.h">

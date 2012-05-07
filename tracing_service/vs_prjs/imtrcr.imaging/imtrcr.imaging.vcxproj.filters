@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Primitives">
+      <UniqueIdentifier>{587b203d-5572-45e2-b238-9fdc70464d02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Primitives">
+      <UniqueIdentifier>{897ddefd-7006-4120-b348-f1a332a80f1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Serialization">
+      <UniqueIdentifier>{99e97f38-b4c1-4f23-a8b5-1ec1f66c12c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Serialization">
+      <UniqueIdentifier>{1df8b531-2a67-4115-9c3d-c5fc6a401b5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\imaging\ArgbQuad.h">
@@ -27,15 +39,6 @@
     <ClInclude Include="..\..\include\imaging\InvalidBmpStreamException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\imaging\ISvgSerializer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\imaging\Path.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\imaging\Point2F.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\imaging\PointOutOfBitmapException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -43,9 +46,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\imaging\RasterImage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\imaging\SvgSerializer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\imaging\VectorImage.h">
@@ -60,12 +60,27 @@
     <ClInclude Include="..\..\include\imaging\WinBmpStructs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\imaging\Path.h">
+      <Filter>Header Files\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\imaging\Point2F.h">
+      <Filter>Header Files\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\imaging\PathCommand.h">
+      <Filter>Header Files\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\imaging\SvgSerializer.h">
+      <Filter>Header Files\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\imaging\ISvgSerializer.h">
+      <Filter>Header Files\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\imaging\PathSerializer.h">
+      <Filter>Header Files\Serialization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\imaging\RasterImage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\imaging\SvgSerializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\imaging\WinBMP.cpp">
@@ -73,6 +88,27 @@
     </ClCompile>
     <ClCompile Include="..\..\src\imaging\WinBmpColorTable.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\imaging\VectorImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\imaging\Path.cpp">
+      <Filter>Source Files\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\imaging\PathCommand.cpp">
+      <Filter>Source Files\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\imaging\Primitive.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\imaging\SvgSerializer.cpp">
+      <Filter>Source Files\Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\imaging\PathSerializer.cpp">
+      <Filter>Source Files\Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\imaging\Point2F.cpp">
+      <Filter>Source Files\Primitives</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

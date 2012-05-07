@@ -11,9 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\soap_service\ServiceLogicFacade.cpp" />
     <ClCompile Include="..\..\src\soap_service\soapC.cpp" />
     <ClCompile Include="..\..\src\soap_service\soapServer.cpp" />
+    <ClCompile Include="..\..\src\soap_service\StatusCodes.cpp" />
     <ClCompile Include="..\..\src\soap_service\stdsoap2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +35,7 @@
     <CustomBuild Include="..\..\misc\imtrcr_soap.wsdl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\soap_service\ServiceLogicFacade.h" />
     <ClInclude Include="..\..\include\soap_service\soapH.h" />
     <ClInclude Include="..\..\include\soap_service\soapImTrcrSoapBindingObject.h" />
     <ClInclude Include="..\..\include\soap_service\soapStub.h" />
@@ -49,7 +51,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>

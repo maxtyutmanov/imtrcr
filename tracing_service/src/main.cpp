@@ -10,17 +10,24 @@
 #include <imaging/InvalidBmpStreamException.h>
 
 #include <utils/base64.h>
+#include <utils/Memory.h>
 
 #include <soap_service/soapH.h>
-#include <soap_service/ImTrcrSoapBinding.nsmap>
 #include <soap_service/StatusCodes.h>
+#include <soap_service/ServiceLogicFacade.h>
+#include <soap_service/ImTrcrSoapBinding.nsmap>
 
 using namespace ImTrcr::Imaging;
 using namespace ImTrcr::Vectorization;
 using namespace ImTrcr::Utils;
+using namespace ImTrcr::SoapService;
 using namespace std;
 
+ServiceLogicFacade* serviceLogic = NULL;
+
 int main(int argc, char* argv[]) {
+    serviceLogic = new ServiceLogicFacade(new SvgSerializer(), new PotraceTracer());
+
     struct soap soap;
 
     int master, slave;  //sockets
@@ -64,70 +71,11 @@ int main(int argc, char* argv[]) {
 
     soap_done(&soap);
 
+    MemoryUtils::SafeFree(&serviceLogic);
+
     return 0;
 }
 
 int __ns1__Trace(struct soap* soap, _ns2__Trace* request, _ns2__TraceResponse* response) {
-
-    //decode image data from base64
-    string decodedImgData;
-
-    bool encodingSuccessful = Base64::Decode(request->imageData, decodedImgData);
-
-    if (!encodingSuccessful) {
-        response->statusCode = StatusCodes::DECODING_ERROR;
-        return SOAP_ERR;
-    }
-
-    istringstream sourceImageStream(decodedImgData);
-
-    //create RasterImage instance
-
-    RasterImage* rasterImage = NULL;
-
-    try {
-        rasterImage = WinBMP::FromStream(sourceImageStream);
-    }
-    catch (const ImTrcr::Imaging::InvalidBmpStreamException& ex) {
-        response->statusCode = StatusCodes::WRONG_FORMAT_ERROR;
-        return SOAP_OK;
-    }
-    catch (...) {
-        response->statusCode = StatusCodes::WRONG_FORMAT_ERROR;
-        return SOAP_OK;
-    }
-
-    //trace RasterImage instance to VectorImage instance
-
-    ITracer* tracer = new PotraceTracer();
-    VectorImage* vectorImage = NULL;
-
-    try {
-        vectorImage = tracer->Trace(*rasterImage);
-    }
-    catch (...) {
-        delete rasterImage;
-        delete tracer;
-
-        response->statusCode = StatusCodes::TRACING_ERROR;
-        return SOAP_OK;
-    }
-
-    //serialize VectorImage to SVG XML and put it into response object
-    ISvgSerializer* svgSerializer = new SvgSerializer();
-    TiXmlDocument* svgXmlDocument = svgSerializer->Serialize(*vectorImage);
-
-    TiXmlPrinter printer;
-    printer.SetStreamPrinting();
-    svgXmlDocument->Accept(&printer);
-    response->svgXml = printer.CStr();
-
-    delete rasterImage;
-    delete tracer;
-    delete vectorImage;
-    delete svgSerializer;
-    delete svgXmlDocument;
-
-    response->statusCode = StatusCodes::OK;
-    return SOAP_OK;
+    return serviceLogic->Trace(soap, request, response);
 }

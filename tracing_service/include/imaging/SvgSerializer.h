@@ -3,6 +3,7 @@
 
 #include "imaging/ISvgSerializer.h"
 #include "tinyxml/tinyxml.h"
+#include <imaging/Path.h>
 
 namespace ImTrcr {
 namespace Imaging {
@@ -10,6 +11,10 @@ namespace Imaging {
     class SvgSerializer : public ISvgSerializer {
     public:
         virtual TiXmlDocument* Serialize(const Imaging::VectorImage& vectorImage) const;
+
+    private:
+        //Path serialization
+        TiXmlElement SerializePathPrimitive(Primitives::Path* pPath) const;
     };
 
 }
