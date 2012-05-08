@@ -9,7 +9,6 @@
 *.exe
 *.lib
 *.vcproj
-*.sln
 *.bak
 *.suo
 *.sdf

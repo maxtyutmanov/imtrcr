@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imtrcr.imaging", "vs_prjs\imtrcr.imaging\imtrcr.imaging.vcxproj", "{58ECB5D2-A611-4350-A8DE-8FD56C4A59D7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tinyxml", "vs_prjs\tinyxml\tinyxml.vcxproj", "{1442683A-AF37-4000-A5B3-A3EE78CD4A6E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imtrcr.vectorization", "vs_prjs\imtrcr.vectorization\imtrcr.vectorization.vcxproj", "{61B68D44-90E2-4A66-A628-9407F70AAA79}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imtrcr.soap_service", "vs_prjs\imtrcr.soap_service\imtrcr.soap_service.vcxproj", "{2E31237F-E7B3-4431-A7C0-CC6942459819}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imtrcr.unit_tests", "vs_prjs\imtrcr.unit_tests\imtrcr.unit_tests.vcxproj", "{324CB945-F549-4A52-92D6-008C52E815FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{79BFB43F-2672-4606-B77A-018D58720A5E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imtrcr.utils", "vs_prjs\imtrcr.utils\imtrcr.utils.vcxproj", "{94F9E52A-E4CD-47CE-AE7F-07FC422BA02B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imtrcr.tracing_service_cui", "vs_prjs\imtrcr.tracing_service_cui\imtrcr.tracing_service_cui.vcxproj", "{74923788-9589-43D8-88D9-7A2C60C07D72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58ECB5D2-A611-4350-A8DE-8FD56C4A59D7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{58ECB5D2-A611-4350-A8DE-8FD56C4A59D7}.Debug|Win32.Build.0 = Debug|Win32
+		{58ECB5D2-A611-4350-A8DE-8FD56C4A59D7}.Release|Win32.ActiveCfg = Release|Win32
+		{58ECB5D2-A611-4350-A8DE-8FD56C4A59D7}.Release|Win32.Build.0 = Release|Win32
+		{1442683A-AF37-4000-A5B3-A3EE78CD4A6E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1442683A-AF37-4000-A5B3-A3EE78CD4A6E}.Debug|Win32.Build.0 = Debug|Win32
+		{1442683A-AF37-4000-A5B3-A3EE78CD4A6E}.Release|Win32.ActiveCfg = Release|Win32
+		{1442683A-AF37-4000-A5B3-A3EE78CD4A6E}.Release|Win32.Build.0 = Release|Win32
+		{61B68D44-90E2-4A66-A628-9407F70AAA79}.Debug|Win32.ActiveCfg = Debug|Win32
+		{61B68D44-90E2-4A66-A628-9407F70AAA79}.Debug|Win32.Build.0 = Debug|Win32
+		{61B68D44-90E2-4A66-A628-9407F70AAA79}.Release|Win32.ActiveCfg = Release|Win32
+		{61B68D44-90E2-4A66-A628-9407F70AAA79}.Release|Win32.Build.0 = Release|Win32
+		{2E31237F-E7B3-4431-A7C0-CC6942459819}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2E31237F-E7B3-4431-A7C0-CC6942459819}.Debug|Win32.Build.0 = Debug|Win32
+		{2E31237F-E7B3-4431-A7C0-CC6942459819}.Release|Win32.ActiveCfg = Release|Win32
+		{2E31237F-E7B3-4431-A7C0-CC6942459819}.Release|Win32.Build.0 = Release|Win32
+		{324CB945-F549-4A52-92D6-008C52E815FE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{324CB945-F549-4A52-92D6-008C52E815FE}.Debug|Win32.Build.0 = Debug|Win32
+		{324CB945-F549-4A52-92D6-008C52E815FE}.Release|Win32.ActiveCfg = Release|Win32
+		{324CB945-F549-4A52-92D6-008C52E815FE}.Release|Win32.Build.0 = Release|Win32
+		{94F9E52A-E4CD-47CE-AE7F-07FC422BA02B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{94F9E52A-E4CD-47CE-AE7F-07FC422BA02B}.Debug|Win32.Build.0 = Debug|Win32
+		{94F9E52A-E4CD-47CE-AE7F-07FC422BA02B}.Release|Win32.ActiveCfg = Release|Win32
+		{94F9E52A-E4CD-47CE-AE7F-07FC422BA02B}.Release|Win32.Build.0 = Release|Win32
+		{74923788-9589-43D8-88D9-7A2C60C07D72}.Debug|Win32.ActiveCfg = Debug|Win32
+		{74923788-9589-43D8-88D9-7A2C60C07D72}.Debug|Win32.Build.0 = Debug|Win32
+		{74923788-9589-43D8-88D9-7A2C60C07D72}.Release|Win32.ActiveCfg = Release|Win32
+		{74923788-9589-43D8-88D9-7A2C60C07D72}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{324CB945-F549-4A52-92D6-008C52E815FE} = {79BFB43F-2672-4606-B77A-018D58720A5E}
+	EndGlobalSection
+EndGlobal
