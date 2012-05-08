@@ -1,36 +1,59 @@
 #pragma once
 
-#include "vectorization/PotraceTracer.h"
+#include <assert.h>
+
+#include <vectorization/PotraceTracer.h>
+#include <vectorization/PotraceImage.h>
+#include <vectorization/TracingContext.h>
+#include <vectorization/PathDecomposer.h>
+
 #include <imaging/Path.h>
+
+#include <utils/Memory.h>
 
 using namespace ImTrcr::Imaging;
 using namespace ImTrcr::Imaging::Primitives;
+using namespace ImTrcr::Utils;
 
 namespace ImTrcr {
 namespace Vectorization {
 
-    Imaging::VectorImage* PotraceTracer::Trace(const Imaging::RasterImage& rasterImage) {
-        VectorImage* vectorImage = new VectorImage();
+    PotraceTracer::PotraceTracer(IBWRecognizer* bwRecognizer) {
+        assert(bwRecognizer != NULL);
+        
+        this->bwRecognizer = bwRecognizer;
+    }
 
-        PathCommand moveTo = PathCommand::MoveToCommand(10, 10.2);
-        PathCommand bezier = PathCommand::QuadraticBezierToCommand(20.123, 20, 30.345, 30.1);
-        PathCommand close = PathCommand::ClosePathCommand();
-        Path* path = new Path(ArgbQuad(0, 0, 0));
-        path->AddCommand(moveTo);
-        path->AddCommand(bezier);
-        path->AddCommand(close);
-        vectorImage->AddPrimitive(path);
+    PotraceTracer::~PotraceTracer() {
+        MemoryUtils::SafeFree(&bwRecognizer);
+    }
 
-        moveTo = PathCommand::MoveToCommand(100, 100.2);
-        bezier = PathCommand::QuadraticBezierToCommand(200.123, 200, 300.345, 300.1);
-        close = PathCommand::ClosePathCommand();
-        path = new Path(ArgbQuad(0, 0, 0));
-        path->AddCommand(moveTo);
-        path->AddCommand(bezier);
-        path->AddCommand(close);
-        vectorImage->AddPrimitive(path);
+    VectorImage* PotraceTracer::Trace(const RasterImage& rasterImage) const {
 
-        return vectorImage;
+        PotraceImage potraceImg(*bwRecognizer, rasterImage);
+
+        //prepare tracing context
+        TracingContext ctx(*(new VectorImage()), potraceImg);
+
+        //do tracing
+        DecomposeIntoPaths(ctx).BuildPolygons(ctx).TrasformToVectorOutlines(ctx);
+        
+        return &ctx.vectorImg;
+    }
+
+    const PotraceTracer& PotraceTracer::DecomposeIntoPaths(TracingContext& ctx) const {
+        PathDecomposer pathDecomposer;
+        pathDecomposer.FindClosedPaths(ctx);
+
+        return *this;
+    }
+
+    const PotraceTracer& PotraceTracer::BuildPolygons(TracingContext& ctx) const {
+        return *this;
+    }
+
+    void PotraceTracer::TrasformToVectorOutlines(TracingContext& ctx) const {
+
     }
 }
 }

@@ -24,7 +24,7 @@ namespace Imaging {
         RasterImage(image_size_t width, image_size_t height);
         void CheckCoordinates(image_size_t x, image_size_t y) const;
     private:
-	RasterImage(const RasterImage &imageToCopy) {}
+        RasterImage(const RasterImage &imageToCopy) {}
 
         image_size_t width;
         image_size_t height;

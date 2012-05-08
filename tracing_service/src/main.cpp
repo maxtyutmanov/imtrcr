@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include <vectorization/PotraceTracer.h>
+#include <vectorization/SimpleBWRecognizer.h>
 
 #include <imaging/SvgSerializer.h>
 #include <imaging/WinBMP.h>
@@ -26,7 +27,7 @@ using namespace std;
 ServiceLogicFacade* serviceLogic = NULL;
 
 int main(int argc, char* argv[]) {
-    serviceLogic = new ServiceLogicFacade(new SvgSerializer(), new PotraceTracer());
+    serviceLogic = new ServiceLogicFacade(new SvgSerializer(), new PotraceTracer(new SimpleBWRecognizer()));
 
     struct soap soap;
 

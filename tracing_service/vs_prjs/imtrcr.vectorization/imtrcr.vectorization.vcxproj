@@ -11,11 +11,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\vectorization\IBWRecognizer.h" />
     <ClInclude Include="..\..\include\vectorization\ITracer.h" />
+    <ClInclude Include="..\..\include\vectorization\PathDecomposer.h" />
+    <ClInclude Include="..\..\include\vectorization\PotracePath.h" />
+    <ClInclude Include="..\..\include\vectorization\SimpleBWRecognizer.h" />
+    <ClInclude Include="..\..\include\vectorization\PixelColor.h" />
+    <ClInclude Include="..\..\include\vectorization\PotraceImage.h" />
     <ClInclude Include="..\..\include\vectorization\PotraceTracer.h" />
+    <ClInclude Include="..\..\include\vectorization\TracingContext.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\vectorization\PathDecomposer.cpp" />
+    <ClCompile Include="..\..\src\vectorization\PotraceImage.cpp" />
     <ClCompile Include="..\..\src\vectorization\PotraceTracer.cpp" />
+    <ClCompile Include="..\..\src\vectorization\SimpleBWRecognizer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\imtrcr.imaging\imtrcr.imaging.vcxproj">

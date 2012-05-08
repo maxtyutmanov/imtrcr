@@ -13,18 +13,54 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Potrace">
+      <UniqueIdentifier>{b9b7ebb6-53ca-4b4a-a6bd-71226dc04f82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Potrace">
+      <UniqueIdentifier>{b489b77e-7002-4c07-8691-cf3d8f110edb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\vectorization\ITracer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\vectorization\PotraceImage.h">
+      <Filter>Header Files\Potrace</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\vectorization\PotraceTracer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Potrace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\vectorization\PixelColor.h">
+      <Filter>Header Files\Potrace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\vectorization\IBWRecognizer.h">
+      <Filter>Header Files\Potrace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\vectorization\SimpleBWRecognizer.h">
+      <Filter>Header Files\Potrace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\vectorization\PathDecomposer.h">
+      <Filter>Header Files\Potrace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\vectorization\PotracePath.h">
+      <Filter>Header Files\Potrace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\vectorization\TracingContext.h">
+      <Filter>Header Files\Potrace</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\vectorization\PotraceImage.cpp">
+      <Filter>Source Files\Potrace</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\vectorization\PotraceTracer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Potrace</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\vectorization\SimpleBWRecognizer.cpp">
+      <Filter>Source Files\Potrace</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\vectorization\PathDecomposer.cpp">
+      <Filter>Source Files\Potrace</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

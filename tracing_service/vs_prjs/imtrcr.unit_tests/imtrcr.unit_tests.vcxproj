@@ -82,6 +82,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\unit_tests\bmp_tests.cpp" />
+    <ClCompile Include="..\..\src\unit_tests\potrace_tests.cpp" />
+    <ClCompile Include="..\..\src\unit_tests\RasterImageStub.cpp" />
     <ClCompile Include="..\..\src\unit_tests\soap_service_tests.cpp" />
     <ClCompile Include="..\..\src\unit_tests\svg_serializer_tests.cpp" />
   </ItemGroup>
@@ -115,6 +117,9 @@
   <ItemGroup>
     <None Include="..\..\misc\test_move_to_output\24bit.bmp" />
     <None Include="..\..\misc\test_move_to_output\8bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\unit_tests\RasterImageStub.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

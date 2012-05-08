@@ -8,6 +8,7 @@
 #include <imaging/SvgSerializer.h>
 
 #include <vectorization/PotraceTracer.h>
+#include <vectorization/SimpleBWRecognizer.h>
 
 using namespace ImTrcr::SoapService;
 using namespace ImTrcr::Imaging;
@@ -16,7 +17,7 @@ using namespace ImTrcr::Vectorization;
 BOOST_AUTO_TEST_SUITE(soap_service_tests)
 
 BOOST_AUTO_TEST_CASE(trace_test_valid_bmp) {
-    ITracer* tracer = new PotraceTracer();
+    ITracer* tracer = new PotraceTracer(new SimpleBWRecognizer());
     ISvgSerializer* svgSerializer = new SvgSerializer();
 
     ServiceLogicFacade facade(svgSerializer, tracer);

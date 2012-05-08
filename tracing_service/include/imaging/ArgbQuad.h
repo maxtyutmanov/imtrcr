@@ -2,7 +2,6 @@
 #define IMAGING_ARGB_QUAD_H
 
 #include "imaging/Common.h"
-//#include "utils/Common.h"
 
 namespace ImTrcr {
 namespace Imaging {
@@ -28,11 +27,19 @@ namespace Imaging {
         bool operator != (const ArgbQuad& right) {
             return !(*this == right);
         }
-
+        
         Utils::byte red;
         Utils::byte green;
         Utils::byte blue;
         Utils::byte alpha;
+
+        static ArgbQuad White() {
+            return ArgbQuad(255, 255, 255, 255);
+        }
+
+        static ArgbQuad Black() {
+            return ArgbQuad(0, 0, 0, 0);
+        }
     };
 }
 }
