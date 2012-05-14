@@ -24,6 +24,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\vectorization\PathDecomposer.cpp" />
     <ClCompile Include="..\..\src\vectorization\PotraceImage.cpp" />
+    <ClCompile Include="..\..\src\vectorization\PotracePath.cpp" />
     <ClCompile Include="..\..\src\vectorization\PotraceTracer.cpp" />
     <ClCompile Include="..\..\src\vectorization\SimpleBWRecognizer.cpp" />
   </ItemGroup>

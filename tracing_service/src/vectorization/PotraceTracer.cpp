@@ -1,6 +1,7 @@
 #pragma once
 
 #include <assert.h>
+#include <stdexcept>
 
 #include <vectorization/PotraceTracer.h>
 #include <vectorization/PotraceImage.h>
@@ -14,6 +15,7 @@
 using namespace ImTrcr::Imaging;
 using namespace ImTrcr::Imaging::Primitives;
 using namespace ImTrcr::Utils;
+using namespace std;
 
 namespace ImTrcr {
 namespace Vectorization {
@@ -31,12 +33,19 @@ namespace Vectorization {
     VectorImage* PotraceTracer::Trace(const RasterImage& rasterImage) const {
 
         PotraceImage potraceImg(*bwRecognizer, rasterImage);
+        VectorImage* pVectorImg = new VectorImage();
 
         //prepare tracing context
-        TracingContext ctx(*(new VectorImage()), potraceImg);
+        TracingContext ctx(*pVectorImg, potraceImg);
 
-        //do tracing
-        DecomposeIntoPaths(ctx).BuildPolygons(ctx).TrasformToVectorOutlines(ctx);
+        try {
+            //do tracing
+            DecomposeIntoPaths(ctx).BuildPolygons(ctx).TrasformToVectorOutlines(ctx);
+        }
+        catch (const exception& ex) {
+            MemoryUtils::SafeFree(&pVectorImg);
+            throw;
+        }
         
         return &ctx.vectorImg;
     }

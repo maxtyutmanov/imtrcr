@@ -2,8 +2,12 @@
 #define VECTORIZATION_POTRACE_IMAGE_H
 
 #include <imaging/RasterImage.h>
+
 #include <vectorization/PixelColor.h>
 #include <vectorization/IBWRecognizer.h>
+#include <vectorization/PotracePath.h>
+
+#include <vector>
 
 namespace ImTrcr {
 namespace Vectorization {
@@ -26,17 +30,20 @@ namespace Vectorization {
         //RB - right bottom. Gets the color of pixel located on the right below the point (x, y)
         PixelColor::Enum RB(Imaging::image_size_t x, Imaging::image_size_t y) const;
 
+        void InvertPixels(const std::vector<PotracePath::Point2>& pixels);
+
         //Gets the width of original image
         Imaging::image_size_t GetW() const;
         //Gets the height of original image
         Imaging::image_size_t GetH() const;
     private:
-        void BuildPixelMap(const IBWRecognizer& bwRecognizer, const Imaging::RasterImage& rasterImg);
+        void BuildMaps(const IBWRecognizer& bwRecognizer, const Imaging::RasterImage& rasterImg);
         PixelColor::Enum GetPixelAt(Imaging::image_size_t x, Imaging::image_size_t y, int shiftX, int shiftY) const;
 
         Imaging::image_size_t width;
         Imaging::image_size_t height;
         PixelColor::Enum* pixelMap;
+        bool* isInvertedMap;
     };
 
 }
