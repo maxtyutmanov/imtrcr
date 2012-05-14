@@ -1,3 +1,4 @@
+#define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE ImTrcrTests
 #include <boost/test/unit_test.hpp>
 #include "imaging/WinBMP.h"
@@ -12,7 +13,7 @@ using namespace ImTrcr::Imaging;
 BOOST_AUTO_TEST_SUITE(bitmap_tests)
 
 BOOST_AUTO_TEST_CASE(from_file_24bit) {
-    ifstream input(L"24bit.bmp");
+    ifstream input("24bit.bmp");
 
     WinBMP* bmp = WinBMP::FromStream(input);
 
@@ -38,7 +39,7 @@ BOOST_AUTO_TEST_CASE(from_file_24bit) {
 }
 
 BOOST_AUTO_TEST_CASE(from_file_8bit) {
-    ifstream input(L"8bit.bmp");
+    ifstream input("8bit.bmp");
 
     WinBMP* bmp = WinBMP::FromStream(input);
 

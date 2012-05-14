@@ -84,16 +84,12 @@ CXXFLAGS := ${CXXFLAGS} ${DEFS}
 create_archive: all
 	ar -cvq ../libtinyxml.a *.o
 
-OUTPUT := xmltest
-
-all: ${OUTPUT}
-
 
 #****************************************************************************
 # Source files
 #****************************************************************************
 
-SRCS := tinyxml.cpp tinyxmlparser.cpp xmltest.cpp tinyxmlerror.cpp tinystr.cpp
+SRCS := tinyxml.cpp tinyxmlparser.cpp tinyxmlerror.cpp tinystr.cpp
 
 # Add on the sources for libraries
 SRCS := ${SRCS}
@@ -104,8 +100,7 @@ OBJS := $(addsuffix .o,$(basename ${SRCS}))
 # Output
 #****************************************************************************
 
-${OUTPUT}: ${OBJS}
-	${LD} -o $@ ${LDFLAGS} ${OBJS} ${LIBS} ${EXTRA_LIBS}
+all : ${OBJS}
 
 #****************************************************************************
 # common rules
@@ -130,5 +125,4 @@ depend:
 
 tinyxml.o: tinyxml.h tinystr.h
 tinyxmlparser.o: tinyxml.h tinystr.h
-xmltest.o: tinyxml.h tinystr.h
 tinyxmlerror.o: tinyxml.h tinystr.h

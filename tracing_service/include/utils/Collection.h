@@ -8,7 +8,7 @@ namespace Utils {
     public:
         template <typename TCollection, typename TElement>
         static bool Contains(const TCollection& c, const TElement& el) {
-            TCollection::const_iterator it;
+            typename TCollection::const_iterator it;
 
             for (it = c.begin(); it != c.end(); ++it) {
                 if (*it == el) {

@@ -3,10 +3,17 @@ root_source_dir := src
 root_libs_dir := lib
 root_libs_include_dir := $(root_libs_dir)
 libs_names := tinyxml
-source_subdirs := . imaging vectorization utils soap_service
+source_subdirs := imaging vectorization utils soap_service
 compile_flags := -Wall -MD -pipe
 link_flags := -s -pipe
 libraries := -lboost_system -lboost_filesystem
+
+ifeq ($(test),yes)
+  source_subdirs := $(source_subdirs) unit_tests
+  libraries := $(libraries) -lboost_unit_test_framework
+else
+  source_subdirs := $(source_subdirs) .
+endif
 
 #prj/include/imaging/...
 relative_include_dirs := $(addprefix ../../, $(root_include_dir) $(root_libs_include_dir))
