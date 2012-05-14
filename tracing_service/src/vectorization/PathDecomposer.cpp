@@ -48,7 +48,7 @@ namespace Vectorization {
 
     void PathDecomposer::BuildPath(const PotraceImage& img, PotracePath& path) {
         //given the current and previous points, find a direction to go. 
-        //Direction is 2 dimensional vector
+        //Direction is a 2 dimensional vector
 
         while (!path.IsClosed()) {
             bool found = false;

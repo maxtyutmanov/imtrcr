@@ -52,14 +52,14 @@ namespace Imaging {
             PathSerializer pathSerializer;
 
             switch (cmd.GetType()) {
-            case PathCommand::Type::MoveTo:
+            case PathCommand::MoveTo:
                 pathSerializer.MoveTo(cmd);
                 break;
-            case PathCommand::Type::QuadraticBezierTo:
+            case PathCommand::QuadraticBezierTo:
                 pathSerializer.QuadraticBezier(cmd);
                 break;
-            case PathCommand::Type::ClosePath:
-                pathSerializer.ClosePath(cmd);
+            case PathCommand::ClosePath:
+                pathSerializer.ClosePath();
                 break;
             default:
                 throw logic_error("Unknown type of path command");

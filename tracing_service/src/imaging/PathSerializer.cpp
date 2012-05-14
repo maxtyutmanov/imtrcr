@@ -34,7 +34,7 @@ namespace Imaging {
         }
     }
 
-    void PathSerializer::ClosePath(const PathCommand& cmd) {
+    void PathSerializer::ClosePath() {
         result << "Z ";
     }
 

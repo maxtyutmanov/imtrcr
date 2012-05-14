@@ -13,7 +13,7 @@ namespace Imaging {
         PathSerializer();
         void MoveTo(const ImTrcr::Imaging::Primitives::PathCommand& cmd);
         void QuadraticBezier(const ImTrcr::Imaging::Primitives::PathCommand& cmd);
-        void ClosePath(const ImTrcr::Imaging::Primitives::PathCommand& cmd);
+        void ClosePath();
         std::string GetResult() const;
 
     private:

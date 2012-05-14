@@ -24,7 +24,7 @@ namespace Primitives {
         vector<Point2F> points;
         points.push_back(Point2F(x, y));
 
-        return PathCommand(Type::MoveTo, points);
+        return PathCommand(PathCommand::MoveTo, points);
     }
 
     PathCommand PathCommand::QuadraticBezierToCommand(float x1, float y1, float x2, float y2) {
@@ -33,11 +33,11 @@ namespace Primitives {
         points.push_back(Point2F(x1, y1));
         points.push_back(Point2F(x2, y2));
 
-        return PathCommand(Type::QuadraticBezierTo, points);
+        return PathCommand(PathCommand::QuadraticBezierTo, points);
     }
 
     PathCommand PathCommand::ClosePathCommand() {
-        return PathCommand(Type::ClosePath, vector<Point2F>());
+        return PathCommand(PathCommand::ClosePath, vector<Point2F>());
     }
 }
 }
