@@ -1,14 +1,13 @@
 #include <imaging/Path.h>
 
 using namespace std;
-//using namespace ImTrcr::Utils;
 
 namespace ImTrcr {
 namespace Imaging {
 namespace Primitives {
 
-    Path::Path(ArgbQuad color) \
-        : Primitive(color, PrimitiveType::Path) {
+    Path::Path(ArgbQuad color)
+        : ImTrcr::Imaging::Primitive(color, PrimitiveType::Path) {
     }
 
     void Path::AddCommand(const PathCommand& command) {

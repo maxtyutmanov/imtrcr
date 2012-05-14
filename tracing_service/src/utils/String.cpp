@@ -7,7 +7,7 @@ namespace Utils {
 
     void StringUtils::TrimEnd(string& str) {
         while (str.length() > 0 && str[str.length() - 1] == ' ') {
-            str.pop_back();
+            str.erase(str.length() - 1, 1);
         }
     }
 
