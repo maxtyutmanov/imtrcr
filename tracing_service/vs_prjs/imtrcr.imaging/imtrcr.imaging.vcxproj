@@ -93,6 +93,7 @@
     <ClInclude Include="..\..\include\imaging\WinBmpStructs.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\imaging\ArgbQuad.cpp" />
     <ClCompile Include="..\..\src\imaging\Path.cpp" />
     <ClCompile Include="..\..\src\imaging\PathCommand.cpp" />
     <ClCompile Include="..\..\src\imaging\PathSerializer.cpp" />

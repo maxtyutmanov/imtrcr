@@ -110,5 +110,8 @@
     <ClCompile Include="..\..\src\imaging\Point2F.cpp">
       <Filter>Source Files\Primitives</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\imaging\ArgbQuad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

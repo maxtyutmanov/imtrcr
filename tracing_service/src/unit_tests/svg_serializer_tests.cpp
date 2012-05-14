@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(path_serializer_bezier_test) {
     
     s.MoveTo(moveTo);
     s.QuadraticBezier(bezier);
-    s.ClosePath(close);
+    s.ClosePath();
 
     const string expected = "M 10.00 10.20 Q 20.12 20.00 30.34 30.10 Z";
     string actual = s.GetResult();
