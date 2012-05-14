@@ -9,7 +9,7 @@ namespace Imaging {
 
     struct PrimitiveType {
         enum Enum {
-            Path
+            Path = 1
         };
     };
 

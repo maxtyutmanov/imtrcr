@@ -4,6 +4,7 @@
 
 #include <map>
 #include <algorithm>
+#include <stdexcept>
 
 using namespace ImTrcr::Imaging;
 using namespace ImTrcr::Utils;
@@ -56,11 +57,9 @@ namespace Vectorization {
             throw logic_error("Cannot find interior of a non-closed path");
         }
 
-        typedef map<image_size_t, vector<image_size_t>> layers_map_t;
-
         //the interior of a path is broken down into so-called layers - lines with height of 1 px.
         //This variable will contain a mapping from layers (y coordinates) to x coordinates of intersection points
-        layers_map_t layers;
+        map< image_size_t, vector<image_size_t> > layers;
 
         //group all intersection points in a path by their y coordinate
         long numberOfPoints = points.size();
@@ -81,7 +80,7 @@ namespace Vectorization {
 
         //find interior pixels
 
-        layers_map_t::iterator layersIt;
+        map< image_size_t, vector<image_size_t> >::iterator layersIt;
         for (layersIt = layers.begin(); layersIt != layers.end(); ++layersIt) {
             //get y coordinate of the layer
             image_size_t yCoord = layersIt->first;
