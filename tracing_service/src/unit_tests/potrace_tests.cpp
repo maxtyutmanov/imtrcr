@@ -451,9 +451,9 @@ BOOST_AUTO_TEST_CASE(potrace_path_long_non_straight_path_that_doesnt_use_all_dir
     PotracePath p;
 
     p.AddPoint(0, 0);
-    for (int i = 0; i < 2; ++i) { ToTheRight(p); }
-    for (int i = 0; i < 2; ++i) { Downwards(p); }
-    for (int i = 0; i < 2; ++i) { ToTheRight(p); }
+    for (int i = 0; i < 4; ++i) { ToTheRight(p); }
+    for (int i = 0; i < 4; ++i) { Downwards(p); }
+    for (int i = 0; i < 4; ++i) { ToTheRight(p); }
 
     BOOST_CHECK(!p.IsStraight(0, p.GetPoints().size() - 1));
 }
@@ -512,16 +512,14 @@ BOOST_AUTO_TEST_CASE(polygon_builder_test) {
 
     vector<int> ind = pol.GetVerticesIndices();
 
-    BOOST_ASSERT(ind.size() == 8);
+    BOOST_ASSERT(ind.size() == 6);
 
     BOOST_CHECK(ind[0] == 0);
     BOOST_CHECK(ind[1] == 1);
     BOOST_CHECK(ind[2] == 5);
-    BOOST_CHECK(ind[3] == 9);
-    BOOST_CHECK(ind[4] == 11);
-    BOOST_CHECK(ind[5] == 13);
-    BOOST_CHECK(ind[6] == 17);
-    BOOST_CHECK(ind[7] == 21);
+    BOOST_CHECK(ind[3] == 11);
+    BOOST_CHECK(ind[4] == 15);
+    BOOST_CHECK(ind[5] == 21);
 }
 
 BOOST_AUTO_TEST_SUITE_END();

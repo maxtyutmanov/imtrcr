@@ -29,7 +29,7 @@ namespace Vectorization {
         const int pathPointsCount = path.GetPoints().size();
 
         TwoDimArray<bool>* segmentsGraphAjMx = NULL;
-
+        
         try {
             segmentsGraphAjMx = PrepareSegmentsGraph(path);
 
@@ -56,17 +56,14 @@ namespace Vectorization {
         for (int i = 0; i < pathPointsCount; ++i) {
 
             //let's look for possible segments originating from i-th point of path
-            int nextPointIndex = ArithmeticUtils::CyclicInc(i, pathPointsCount);
-            
-            for (int j = nextPointIndex; j != i; j = ArithmeticUtils::CyclicInc(j, pathPointsCount)) {
+            int j = ArithmeticUtils::CyclicInc(i, pathPointsCount);
+
+            while (j != i) {
                 if (path.IsPossibleSegment(i, j)) {
-                    //there is a possible segment
                     ajMx->At(i, j) = true;
                 }
-                else {
-                    //if there is no possible segment to j-th point, there will be no possible segments after j-th point
-                    break;
-                }
+
+                j = ArithmeticUtils::CyclicInc(j, pathPointsCount);
             }
         }
 

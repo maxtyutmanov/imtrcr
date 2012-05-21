@@ -13,6 +13,8 @@ namespace Imaging {
         result << fixed << setprecision(2);
     }
 
+    //TODO: DRY!
+
     void PathSerializer::MoveTo(const PathCommand& cmd) {
         result << "M ";
 
@@ -36,6 +38,17 @@ namespace Imaging {
 
     void PathSerializer::ClosePath() {
         result << "Z ";
+    }
+
+    void PathSerializer::LineTo(const PathCommand& cmd) {
+        result << "L ";
+
+        const vector<Point2F>& points = cmd.GetPoints();
+        vector<Point2F>::const_iterator it;
+
+        for (it = points.begin(); it != points.end(); ++it) {
+            WritePoint(*it);
+        }
     }
 
     string PathSerializer::GetResult() const {

@@ -2,6 +2,7 @@
 #define UTILS_TWO_DIM_ARRAY_H
 
 #include <stdexcept>
+#include <iostream>
 
 namespace ImTrcr {
 namespace Utils {
@@ -17,6 +18,16 @@ namespace Utils {
 
         int GetRowCount() const;
         int GetColumnCount() const;
+
+        void Print() const {
+            for (int r = 0; r < rows; ++r) {
+                for (int c = 0; c < columns; ++c) {
+                    std::cout << internalAr[r][c] << ' ';
+                }
+
+                std::cout << std::endl;
+            }
+        }
 
         ~TwoDimArray();
     private:

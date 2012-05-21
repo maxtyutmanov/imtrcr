@@ -39,6 +39,13 @@ namespace Primitives {
     PathCommand PathCommand::ClosePathCommand() {
         return PathCommand(PathCommand::ClosePath, vector<Point2F>());
     }
+
+    PathCommand PathCommand::LineToCommand(float x, float y) {
+        vector<Point2F> points;
+        points.push_back(Point2F(x, y));
+
+        return PathCommand(PathCommand::LineTo, points);
+    }
 }
 }
 }

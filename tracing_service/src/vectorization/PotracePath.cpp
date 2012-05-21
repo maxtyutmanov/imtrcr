@@ -160,7 +160,7 @@ namespace Vectorization {
 
         int k = i;
 
-        for (int k = i; k < j; k = ArithmeticUtils::CyclicInc(k, (int)points.size())) {
+        for (int k = i; k != j; k = ArithmeticUtils::CyclicInc(k, (int)points.size())) {
             Point2 cur = points[k];
             Point2 next = points[ArithmeticUtils::CyclicInc(k, (int)points.size())];
 
@@ -189,15 +189,15 @@ namespace Vectorization {
 
         //check internal points of path
         int pointIndex = ArithmeticUtils::CyclicInc(i, (int)points.size());
-        for (int k = 1; k < points.size() - 1; ++k) {
-            //max distance (for approximating line segment) is 0.5 px
-            bool ok = LineIsNotFurtherThan(f, points[pointIndex], 0.5);
+        while (pointIndex != j) {
+            //max distance from approximating line segment to any of path's points is 1 px
+            bool ok = LineIsNotFurtherThan(f, points[pointIndex], 1);
 
             if (!ok) {
                 return false;
             }
 
-            pointIndex = ArithmeticUtils::CyclicInc(k, (int)points.size());
+            pointIndex = ArithmeticUtils::CyclicInc(pointIndex, (int)points.size());
         }
 
         return true;

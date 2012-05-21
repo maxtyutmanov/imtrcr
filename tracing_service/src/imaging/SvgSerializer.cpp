@@ -61,6 +61,9 @@ namespace Imaging {
             case PathCommand::ClosePath:
                 pathSerializer.ClosePath();
                 break;
+            case PathCommand::LineTo:
+                pathSerializer.LineTo(cmd);
+                break;
             default:
                 throw logic_error("Unknown type of path command");
                 break;

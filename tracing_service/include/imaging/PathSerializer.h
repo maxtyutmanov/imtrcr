@@ -14,6 +14,7 @@ namespace Imaging {
         void MoveTo(const ImTrcr::Imaging::Primitives::PathCommand& cmd);
         void QuadraticBezier(const ImTrcr::Imaging::Primitives::PathCommand& cmd);
         void ClosePath();
+        void LineTo(const ImTrcr::Imaging::Primitives::PathCommand& cmd);
         std::string GetResult() const;
 
     private:

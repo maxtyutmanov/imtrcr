@@ -14,12 +14,14 @@ namespace Primitives {
         enum Type {
             MoveTo,
             QuadraticBezierTo,
-            ClosePath
+            ClosePath,
+            LineTo
         };
 
         static PathCommand MoveToCommand(float x, float y);
         static PathCommand QuadraticBezierToCommand(float x1, float y1, float x2, float y2);
         static PathCommand ClosePathCommand();
+        static PathCommand LineToCommand(float x, float y);
 
         Type GetType() const;
         const std::vector<Point2F>& GetPoints() const;
