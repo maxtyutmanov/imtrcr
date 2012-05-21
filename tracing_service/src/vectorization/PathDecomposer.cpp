@@ -37,7 +37,7 @@ namespace Vectorization {
                     path.AddPoint(x, y);
                     path.AddPoint(x, y + 1);    //going to the bottom edge of the pixel
                     BuildPath(ctx.potraceImg, path);
-                    vector<PotracePath::Point2> interiorPoints = path.GetInteriorPoints();
+                    vector<Point2> interiorPoints = path.GetInteriorPoints();
                     ctx.potraceImg.InvertPixels(interiorPoints);
                     //TODO: implement despeckling
                     ctx.paths.push_back(path);
@@ -52,7 +52,7 @@ namespace Vectorization {
 
         while (!path.IsClosed()) {
             bool found = false;
-            PotracePath::Point2 foundDirection;
+            Point2 foundDirection;
 
             for (int i = 0; i < DIRECTIONS_COUNT; ++i) {
                 if (IsDirectionAllowed(img, path, (Directions::Enum)i)) {
@@ -74,10 +74,10 @@ namespace Vectorization {
     }
 
     bool PathDecomposer::IsDirectionAllowed(const PotraceImage& img, const PotracePath& path, const Directions::Enum direction) {
-        PotracePath::Point2 directionVector = walkDirections[direction];
+        Point2 directionVector = walkDirections[direction];
 
         //...check for back direction
-        PotracePath::Point2 resultingEdge = PotracePath::Point2(path.CurX() + directionVector.x, path.CurY() + directionVector.y);
+        Point2 resultingEdge = Point2(path.CurX() + directionVector.x, path.CurY() + directionVector.y);
 
         //...check if new edge is already included in the current path
         if (path.IsEdgeInPath(path.CurX(), path.CurY(), path.CurX() + directionVector.x, path.CurY() + directionVector.y)) {

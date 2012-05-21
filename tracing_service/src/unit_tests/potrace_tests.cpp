@@ -3,10 +3,13 @@
 #include <vectorization/SimpleBWRecognizer.h>
 #include <vectorization/PotraceImage.h>
 #include <vectorization/PathDecomposer.h>
+#include <vectorization/PolygonBuilder.h>
 
 #include <utils/Collection.h>
 
 #include <unit_tests/RasterImageStub.h>
+
+#include <iostream>
 
 using namespace ImTrcr::Imaging;
 using namespace ImTrcr::Vectorization;
@@ -120,12 +123,12 @@ BOOST_AUTO_TEST_CASE(potrace_image_boundary_pixels_test) {
 
 BOOST_AUTO_TEST_CASE(potrace_image_invert_pixels_test) {
     RasterImageStub rasterImg(10, 10);
-    vector<PotracePath::Point2> pointsToInvert;
+    vector<Point2> pointsToInvert;
 
     for (image_size_t x = 2; x < 5; ++x) {
         for (image_size_t y = 3; y < 5; ++y) {
             rasterImg.SetColor(x, y, ArgbQuad::Black());
-            pointsToInvert.push_back(PotracePath::Point2(x, y));
+            pointsToInvert.push_back(Point2(x, y));
         }
     }
 
@@ -154,7 +157,7 @@ BOOST_AUTO_TEST_CASE(potrace_path_augment_not_closed_test) {
     p.AddPoint(10, 11);
     p.Augment(1, 1);
 
-    const vector<PotracePath::Point2>& points = p.GetPoints();
+    const vector<Point2>& points = p.GetPoints();
 
     BOOST_ASSERT(points.size() == 2);
     BOOST_CHECK(points[0].x == 10);
@@ -171,7 +174,7 @@ BOOST_AUTO_TEST_CASE(potrace_path_augment_closed_test) {
     p.AddPoint(10, 12);
     p.Augment(0, -1);
 
-    const vector<PotracePath::Point2>& points = p.GetPoints();
+    const vector<Point2>& points = p.GetPoints();
 
     BOOST_CHECK(points.size() == 4);
     BOOST_CHECK(p.IsClosed());
@@ -213,35 +216,35 @@ BOOST_AUTO_TEST_CASE(potrace_path_get_interior_points_simple_test) {
 
     BOOST_ASSERT(p.IsClosed());
 
-    vector<PotracePath::Point2> interiorPoints = p.GetInteriorPoints();
+    vector<Point2> interiorPoints = p.GetInteriorPoints();
 
     BOOST_CHECK(interiorPoints.size() == 20);
     
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(3, 1)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(4, 1)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(5, 1)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(3, 1)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(4, 1)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(5, 1)));
 
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(2, 2)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(3, 2)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(4, 2)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(5, 2)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(2, 2)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(3, 2)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(4, 2)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(5, 2)));
 
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(2, 3)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(3, 3)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(4, 3)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(5, 3)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(2, 3)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(3, 3)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(4, 3)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(5, 3)));
 
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(2, 4)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(3, 4)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(4, 4)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(5, 4)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(2, 4)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(3, 4)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(4, 4)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(5, 4)));
 
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(2, 5)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(3, 5)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(4, 5)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(2, 5)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(3, 5)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(4, 5)));
 
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(3, 6)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(4, 6)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(3, 6)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(4, 6)));
 }
 
 BOOST_AUTO_TEST_CASE(potrace_path_get_interior_points_concave_test) {
@@ -265,33 +268,33 @@ BOOST_AUTO_TEST_CASE(potrace_path_get_interior_points_concave_test) {
 
     BOOST_ASSERT(p.IsClosed());
 
-    vector<PotracePath::Point2> interiorPoints = p.GetInteriorPoints();
+    vector<Point2> interiorPoints = p.GetInteriorPoints();
 
     BOOST_CHECK(interiorPoints.size() == 18);
     
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(3, 1)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(5, 1)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(3, 1)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(5, 1)));
 
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(2, 2)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(3, 2)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(5, 2)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(2, 2)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(3, 2)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(5, 2)));
 
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(2, 3)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(3, 3)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(4, 3)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(5, 3)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(2, 3)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(3, 3)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(4, 3)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(5, 3)));
 
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(2, 4)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(3, 4)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(4, 4)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(5, 4)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(2, 4)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(3, 4)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(4, 4)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(5, 4)));
 
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(2, 5)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(3, 5)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(4, 5)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(2, 5)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(3, 5)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(4, 5)));
 
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(3, 6)));
-    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, PotracePath::Point2(4, 6)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(3, 6)));
+    BOOST_CHECK(CollectionUtils::Contains(interiorPoints, Point2(4, 6)));
 }
 
 BOOST_AUTO_TEST_CASE(path_decomposer_test) {
@@ -331,28 +334,194 @@ BOOST_AUTO_TEST_CASE(path_decomposer_test) {
     BOOST_ASSERT(ctx.paths.size() == 1);
     BOOST_ASSERT(ctx.paths[0].IsClosed());
 
-    const vector<PotracePath::Point2>& points = ctx.paths[0].GetPoints();
+    const vector<Point2>& points = ctx.paths[0].GetPoints();
 
     BOOST_ASSERT(points.size() == 14);
 
-    BOOST_CHECK(points[0] == PotracePath::Point2(4, 0));
-    BOOST_CHECK(points[1] == PotracePath::Point2(4, 1));
-    BOOST_CHECK(points[2] == PotracePath::Point2(3, 1));
-    BOOST_CHECK(points[3] == PotracePath::Point2(3, 2));
-    BOOST_CHECK(points[4] == PotracePath::Point2(3, 3));
-    BOOST_CHECK(points[5] == PotracePath::Point2(4, 3));
-    BOOST_CHECK(points[6] == PotracePath::Point2(4, 4));
-    BOOST_CHECK(points[7] == PotracePath::Point2(5, 4));
-    BOOST_CHECK(points[8] == PotracePath::Point2(6, 4));
-    BOOST_CHECK(points[9] == PotracePath::Point2(6, 3));
-    BOOST_CHECK(points[10] == PotracePath::Point2(6, 2));
-    BOOST_CHECK(points[11] == PotracePath::Point2(5, 2));
-    BOOST_CHECK(points[12] == PotracePath::Point2(5, 1));
-    BOOST_CHECK(points[13] == PotracePath::Point2(5, 0));
+    BOOST_CHECK(points[0] == Point2(4, 0));
+    BOOST_CHECK(points[1] == Point2(4, 1));
+    BOOST_CHECK(points[2] == Point2(3, 1));
+    BOOST_CHECK(points[3] == Point2(3, 2));
+    BOOST_CHECK(points[4] == Point2(3, 3));
+    BOOST_CHECK(points[5] == Point2(4, 3));
+    BOOST_CHECK(points[6] == Point2(4, 4));
+    BOOST_CHECK(points[7] == Point2(5, 4));
+    BOOST_CHECK(points[8] == Point2(6, 4));
+    BOOST_CHECK(points[9] == Point2(6, 3));
+    BOOST_CHECK(points[10] == Point2(6, 2));
+    BOOST_CHECK(points[11] == Point2(5, 2));
+    BOOST_CHECK(points[12] == Point2(5, 1));
+    BOOST_CHECK(points[13] == Point2(5, 0));
 
-    BOOST_CHECK(ctx.paths[0].StartX() == 4);
-    BOOST_CHECK(ctx.paths[0].StartY() == 0);
+}
 
+BOOST_AUTO_TEST_CASE(potrace_path_every_two_point_path_is_straight_test) {
+    PotracePath p;
+
+    p.AddPoint(3, 1);
+    Downwards(p);
+    ToTheLeft(p);
+    for (int i = 0; i < 4; ++i) { Downwards(p); }
+    ToTheRight(p);
+    Downwards(p);
+    ToTheRight(p);
+    Downwards(p);
+    for (int i = 0; i < 2; ++i) { ToTheRight(p); }
+    Upwards(p);
+    ToTheRight(p);
+    for (int i = 0; i < 4; ++i) { Upwards(p); }
+    ToTheLeft(p);
+    Upwards(p);
+    ToTheLeft(p);
+    Upwards(p);
+    for (int i = 0; i < 2; ++i) { ToTheLeft(p); }
+
+    const int pointsCount = p.GetPoints().size();
+
+    for (int i = 0; i < pointsCount - 1; ++i) {
+        BOOST_CHECK(p.IsStraight(i, i + 1));
+    }
+}
+
+BOOST_AUTO_TEST_CASE(potrace_path_every_three_point_path_is_straight_test) {
+    PotracePath p;
+
+    p.AddPoint(3, 1);
+    Downwards(p);
+    ToTheLeft(p);
+    for (int i = 0; i < 4; ++i) { Downwards(p); }
+    ToTheRight(p);
+    Downwards(p);
+    ToTheRight(p);
+    Downwards(p);
+    for (int i = 0; i < 2; ++i) { ToTheRight(p); }
+    Upwards(p);
+    ToTheRight(p);
+    for (int i = 0; i < 4; ++i) { Upwards(p); }
+    ToTheLeft(p);
+    Upwards(p);
+    ToTheLeft(p);
+    Upwards(p);
+    for (int i = 0; i < 2; ++i) { ToTheLeft(p); }
+
+    BOOST_CHECK(p.IsStraight(0, 2));
+    BOOST_CHECK(p.IsStraight(23, 1));
+}
+
+BOOST_AUTO_TEST_CASE(potrace_path_long_straight_path_test) {
+    PotracePath p;
+
+    p.AddPoint(0, 0);
+    for (int i = 0; i < 6; ++i) { ToTheRight(p); }
+    Upwards(p);
+    for (int i = 0; i < 5; ++i) { ToTheRight(p); }
+
+    BOOST_CHECK(p.IsStraight(0, p.GetPoints().size() - 1));
+}
+
+BOOST_AUTO_TEST_CASE(potrace_path_long_non_straight_path_all_directions_test) {
+    PotracePath p;
+
+    p.AddPoint(0, 0);
+
+    Upwards(p);
+    for (int i = 0; i < 4; ++i) { ToTheRight(p); }
+    Downwards(p);
+    ToTheLeft(p);
+
+    BOOST_CHECK(!p.IsStraight(0, p.GetPoints().size() - 1));
+}
+
+BOOST_AUTO_TEST_CASE(potrace_path_long_non_straight_path_that_doesnt_use_all_directions) {
+    PotracePath p;
+
+    p.AddPoint(0, 0);
+
+    for (int i = 0; i < 2; ++i) { ToTheRight(p); }
+    Upwards(p);
+    for (int i = 0; i < 3; ++i) { ToTheRight(p); }
+    Upwards(p);
+    for (int i = 0; i < 4; ++i) { ToTheRight(p); }
+    Downwards(p);
+
+    BOOST_CHECK(!p.IsStraight(0, p.GetPoints().size() - 1));
+}
+
+BOOST_AUTO_TEST_CASE(potrace_path_long_non_straight_path_that_doesnt_use_all_directions_2) {
+    PotracePath p;
+
+    p.AddPoint(0, 0);
+    for (int i = 0; i < 2; ++i) { ToTheRight(p); }
+    for (int i = 0; i < 2; ++i) { Downwards(p); }
+    for (int i = 0; i < 2; ++i) { ToTheRight(p); }
+
+    BOOST_CHECK(!p.IsStraight(0, p.GetPoints().size() - 1));
+}
+
+BOOST_AUTO_TEST_CASE(potrace_path_is_possible_segment_true) {
+    PotracePath p;
+
+    p.AddPoint(0, 0);
+    for (int i = 0; i < 6; ++i) { ToTheRight(p); }
+    Upwards(p);
+    for (int i = 0; i < 5; ++i) { ToTheRight(p); }
+
+    BOOST_ASSERT(p.IsStraight(0, p.GetPoints().size() - 1));
+
+    BOOST_CHECK(p.IsPossibleSegment(1, p.GetPoints().size() - 2));
+}
+
+BOOST_AUTO_TEST_CASE(polygon_builder_test) {
+    RasterImageStub rasterImg(10, 10);
+    SimpleBWRecognizer r;
+    PotraceImage potraceImg(r, rasterImg);
+    VectorImage vectorImg;
+
+    TracingContext ctx(vectorImg, potraceImg);
+
+    PotracePath p;
+
+    p.AddPoint(3, 1);
+    Downwards(p);
+    ToTheLeft(p);
+    for (int i = 0; i < 4; ++i) { Downwards(p); }
+    ToTheRight(p);
+    Downwards(p);
+    ToTheRight(p);
+    Downwards(p);
+    for (int i = 0; i < 2; ++i) { ToTheRight(p); }
+    Upwards(p);
+    ToTheRight(p);
+    for (int i = 0; i < 4; ++i) { Upwards(p); }
+    ToTheLeft(p);
+    Upwards(p);
+    ToTheLeft(p);
+    Upwards(p);
+    for (int i = 0; i < 2; ++i) { ToTheLeft(p); }
+
+    ctx.paths.push_back(p);
+
+    PolygonBuilder polygonBuilder;
+    polygonBuilder.Polygonize(ctx);
+
+    const vector<Polygon>& polygons = ctx.polygons;
+
+    BOOST_ASSERT(polygons.size() == 1);
+
+    Polygon pol = polygons[0];
+
+    vector<int> ind = pol.GetVerticesIndices();
+
+    BOOST_ASSERT(ind.size() == 8);
+
+    BOOST_CHECK(ind[0] == 0);
+    BOOST_CHECK(ind[1] == 1);
+    BOOST_CHECK(ind[2] == 5);
+    BOOST_CHECK(ind[3] == 9);
+    BOOST_CHECK(ind[4] == 11);
+    BOOST_CHECK(ind[5] == 13);
+    BOOST_CHECK(ind[6] == 17);
+    BOOST_CHECK(ind[7] == 21);
 }
 
 BOOST_AUTO_TEST_SUITE_END();

@@ -82,6 +82,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\unit_tests\bmp_tests.cpp" />
+    <ClCompile Include="..\..\src\unit_tests\graph_tests.cpp" />
     <ClCompile Include="..\..\src\unit_tests\potrace_tests.cpp" />
     <ClCompile Include="..\..\src\unit_tests\RasterImageStub.cpp" />
     <ClCompile Include="..\..\src\unit_tests\soap_service_tests.cpp" />

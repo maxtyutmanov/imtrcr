@@ -42,9 +42,9 @@ namespace Vectorization {
         return GetPixelAt(x, y, 1, 1);
     }
 
-    void PotraceImage::InvertPixels(const vector<PotracePath::Point2>& pixels) {
-        vector<PotracePath::Point2>::const_iterator it;
-        const vector<PotracePath::Point2>::const_iterator pixelsEnd = pixels.end();
+    void PotraceImage::InvertPixels(const vector<Point2>& pixels) {
+        vector<Point2>::const_iterator it;
+        const vector<Point2>::const_iterator pixelsEnd = pixels.end();
         for (it = pixels.begin(); it != pixelsEnd; ++it) {
             if (it->x >= 0 && it->x < GetW() || it->y >= 0 || it->y < GetH()) {
                 long mapIndex = it->y * GetW() + it->x;

@@ -7,6 +7,7 @@
 #include <vectorization/PotraceImage.h>
 #include <vectorization/TracingContext.h>
 #include <vectorization/PathDecomposer.h>
+#include <vectorization/PolygonBuilder.h>
 
 #include <imaging/Path.h>
 
@@ -58,6 +59,9 @@ namespace Vectorization {
     }
 
     const PotraceTracer& PotraceTracer::BuildPolygons(TracingContext& ctx) const {
+        PolygonBuilder b;
+        b.Polygonize(ctx);
+
         return *this;
     }
 

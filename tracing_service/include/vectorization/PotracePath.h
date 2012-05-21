@@ -3,6 +3,9 @@
 
 #include <imaging/Common.h>
 
+#include <vectorization/Point2.h>
+#include <vectorization/StraightLineEquation.h>
+
 #include <vector>
 
 namespace ImTrcr {
@@ -10,21 +13,6 @@ namespace Vectorization {
 
     class PotracePath {
     public:
-        struct Point2 {
-            Point2() 
-                : x(0), y(0) { }
-
-            Point2(Imaging::image_size_t x, Imaging::image_size_t y)
-                : x(x), y(y) { }
-
-            bool operator == (const Point2& right) const {
-                return this->x == right.x && this->y == right.y;
-            }
-
-            Imaging::image_size_t x;
-            Imaging::image_size_t y;
-        };
-
         PotracePath();
 
         Imaging::image_size_t StartX() const;
@@ -45,6 +33,11 @@ namespace Vectorization {
         bool IsEdgeInPath(Imaging::image_size_t x1, Imaging::image_size_t y1, Imaging::image_size_t x2, Imaging::image_size_t y2) const;
 
         void Augment(int moveX, int moveY);
+
+        //finds out whether the subpath specified by start index and end index is straight
+        bool IsStraight(int i, int j) const;
+        //finds out if there is a possible segment from i-th to j-th vertex of path
+        bool IsPossibleSegment(int i, int j) const;
     private:
         std::vector<Point2> points;
         bool closed;
@@ -52,6 +45,10 @@ namespace Vectorization {
         Point2 GetFirstPoint() const;
         Point2 GetCurPoint() const;
         Point2 GetPrevPoint() const;
+        bool UsesAllDirections(int i, int j) const;
+        bool CanBeApproximatedByLine(int i, int j) const;
+
+        static bool LineIsNotFurtherThan(const StraightLineEquation& lineEq, const Point2& point, float maxDistance);
     };
 
 }

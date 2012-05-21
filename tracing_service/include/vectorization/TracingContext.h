@@ -5,6 +5,7 @@
 
 #include <vectorization/PotraceImage.h>
 #include <vectorization/PotracePath.h>
+#include <vectorization/Polygon.h>
 
 #include <vector>
 
@@ -18,6 +19,7 @@ namespace Vectorization {
         Imaging::VectorImage& vectorImg;
         PotraceImage& potraceImg;
         std::vector<PotracePath> paths;
+        std::vector<Polygon> polygons;
     };
 
 }

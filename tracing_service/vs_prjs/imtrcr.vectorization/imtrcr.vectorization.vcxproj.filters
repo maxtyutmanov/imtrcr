@@ -48,6 +48,18 @@
     <ClInclude Include="..\..\include\vectorization\TracingContext.h">
       <Filter>Header Files\Potrace</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\vectorization\Polygon.h">
+      <Filter>Header Files\Potrace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\vectorization\PolygonBuilder.h">
+      <Filter>Header Files\Potrace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\vectorization\Point2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\vectorization\StraightLineEquation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\vectorization\PotraceImage.cpp">
@@ -64,6 +76,15 @@
     </ClCompile>
     <ClCompile Include="..\..\src\vectorization\PotracePath.cpp">
       <Filter>Source Files\Potrace</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\vectorization\Polygon.cpp">
+      <Filter>Source Files\Potrace</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\vectorization\PolygonBuilder.cpp">
+      <Filter>Source Files\Potrace</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\vectorization\StraightLineEquation.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

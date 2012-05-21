@@ -1,4 +1,5 @@
 #include <vectorization/PotracePath.h>
+#include <vectorization/StraightLineEquation.h>
 
 #include <utils/Arithmetic.h>
 
@@ -44,7 +45,7 @@ namespace Vectorization {
         points.push_back(Point2(x, y));
     }
 
-    const vector<PotracePath::Point2>& PotracePath::GetPoints() const {
+    const vector<Point2>& PotracePath::GetPoints() const {
         return points;
     }
 
@@ -52,7 +53,7 @@ namespace Vectorization {
         return closed;
     }
 
-    vector<PotracePath::Point2> PotracePath::GetInteriorPoints() const {
+    vector<Point2> PotracePath::GetInteriorPoints() const {
         if (!this->IsClosed()) {
             throw logic_error("Cannot find interior of a non-closed path");
         }
@@ -64,9 +65,9 @@ namespace Vectorization {
         //group all intersection points in a path by their y coordinate
         long numberOfPoints = points.size();
         for (long i = 0; i < points.size(); ++i) {
-            PotracePath::Point2 prevPoint = points[ArithmeticUtils::CyclicDec(i, numberOfPoints)];
-            PotracePath::Point2 curPoint = points[i];
-            PotracePath::Point2 nextPoint = points[ArithmeticUtils::CyclicInc(i, numberOfPoints)];
+            Point2 prevPoint = points[ArithmeticUtils::CyclicDec(i, numberOfPoints)];
+            Point2 curPoint = points[i];
+            Point2 nextPoint = points[ArithmeticUtils::CyclicInc(i, numberOfPoints)];
 
             //there is an edge that intersects the layer between y and (y + 1) coordinate lines
             if (prevPoint.x == curPoint.x && prevPoint.y == curPoint.y + 1 ||
@@ -76,7 +77,7 @@ namespace Vectorization {
             }
         }
 
-        vector<PotracePath::Point2> interiorPixelsCoords;
+        vector<Point2> interiorPixelsCoords;
 
         //find interior pixels
 
@@ -95,7 +96,7 @@ namespace Vectorization {
                 image_size_t nextX = layerPoints[i + 1];
 
                 for (image_size_t x = curX; x < nextX; ++x) {
-                    interiorPixelsCoords.push_back(PotracePath::Point2(x, yCoord));
+                    interiorPixelsCoords.push_back(Point2(x, yCoord));
                 }
             }
         }
@@ -136,7 +137,109 @@ namespace Vectorization {
         }
     }
 
-    PotracePath::Point2 PotracePath::GetFirstPoint() const {
+    #pragma region Straightness testing algorithm
+
+    bool PotracePath::IsStraight(int i, int j) const {
+        int subpathLength = ArithmeticUtils::CyclicDifference(j, i, (int)points.size());
+
+        if (subpathLength <= 3) {
+            return true;
+        }
+        else {
+            return !UsesAllDirections(i, j) && CanBeApproximatedByLine(i, j);
+        }
+    }
+
+    bool PotracePath::UsesAllDirections(int i, int j) const {
+        //direction key = 2*dx + dy
+        map<int, bool> directionsMap;
+        directionsMap[-2] = false;
+        directionsMap[2] = false;
+        directionsMap[-1] = false;
+        directionsMap[1] = false;
+
+        int k = i;
+
+        for (int k = i; k < j; k = ArithmeticUtils::CyclicInc(k, (int)points.size())) {
+            Point2 cur = points[k];
+            Point2 next = points[ArithmeticUtils::CyclicInc(k, (int)points.size())];
+
+            int moveX = next.x - cur.x;
+            int moveY = next.y - cur.y;
+
+            //direction key = 2*dx + dy
+            directionsMap[moveX * 2 + moveY] = true;
+        }
+
+        map<int, bool>::const_iterator it;
+        for (it = directionsMap.begin(); it != directionsMap.end(); ++it) {
+            if (!it->second) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    bool PotracePath::CanBeApproximatedByLine(int i, int j) const {
+        Point2 firstP = points[i];
+        Point2 lastP = points[j];
+
+        StraightLineEquation f(firstP.x, firstP.y, lastP.x, lastP.y);
+
+        //check internal points of path
+        int pointIndex = ArithmeticUtils::CyclicInc(i, (int)points.size());
+        for (int k = 1; k < points.size() - 1; ++k) {
+            //max distance (for approximating line segment) is 0.5 px
+            bool ok = LineIsNotFurtherThan(f, points[pointIndex], 0.5);
+
+            if (!ok) {
+                return false;
+            }
+
+            pointIndex = ArithmeticUtils::CyclicInc(k, (int)points.size());
+        }
+
+        return true;
+    }
+
+    bool PotracePath::LineIsNotFurtherThan(const StraightLineEquation& lineEq, const Point2& point, float maxDistance) {
+        float fLeftTop = lineEq(point.x - maxDistance, point.y - maxDistance);
+        float fLeftBottom = lineEq(point.x - maxDistance, point.y + maxDistance);
+        float fRightTop = lineEq(point.x + maxDistance, point.y - maxDistance);
+        float fRightBottom = lineEq(point.x + maxDistance, point.y + maxDistance);
+
+        if (fLeftTop == 0 || fLeftBottom == 0 || fRightTop == 0 || fRightBottom == 0) {
+            return true;
+        }
+        else if (
+            fLeftTop > 0 && fLeftBottom > 0 && fRightTop > 0 && fRightBottom > 0 ||
+            fLeftTop < 0 && fLeftBottom < 0 && fRightTop < 0 && fRightBottom < 0) {
+
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    #pragma endregion
+
+    bool PotracePath::IsPossibleSegment(int i, int j) const {
+        int cyclicDiff = ArithmeticUtils::CyclicDifference(j, i, (int)points.size());
+
+        if (cyclicDiff <= points.size() - 3) {
+            int prevPointIndex = ArithmeticUtils::CyclicDec(i, (int)points.size());
+            int nextPointIndex = ArithmeticUtils::CyclicInc(j, (int)points.size());
+
+            return IsStraight(prevPointIndex, nextPointIndex);
+        }
+        else {
+            return false;
+        }
+    }
+
+    Point2 PotracePath::GetFirstPoint() const {
         if (points.size() == 0) {
             throw logic_error("There's no first point to get - there are no points in path yet!");
         }
@@ -144,7 +247,7 @@ namespace Vectorization {
         return points[0];
     }
 
-    PotracePath::Point2 PotracePath::GetCurPoint() const {
+    Point2 PotracePath::GetCurPoint() const {
         if (points.size() == 0) {
             throw logic_error("There's no current point to get - there are no points in path yet!");
         }
@@ -152,7 +255,7 @@ namespace Vectorization {
         return points[points.size() - 1];
     }
 
-    PotracePath::Point2 PotracePath::GetPrevPoint() const {
+    Point2 PotracePath::GetPrevPoint() const {
         if (points.size() < 2) {
             throw logic_error("There's no previous point in the path. There are less than two points in path.");
         }

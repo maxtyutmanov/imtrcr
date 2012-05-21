@@ -2,6 +2,7 @@
 #define VECTORIZATION_PATH_DECOMPOSER_H
 
 #include <vectorization/TracingContext.h>
+#include <vectorization/Point2.h>
 
 namespace ImTrcr {
 namespace Vectorization {
@@ -27,7 +28,7 @@ namespace Vectorization {
         bool IsDirectionAllowed(const PotraceImage& img, const PotracePath& path, const Directions::Enum direction);
 
         static const int DIRECTIONS_COUNT = 4;
-        PotracePath::Point2 walkDirections[DIRECTIONS_COUNT];
+        Point2 walkDirections[DIRECTIONS_COUNT];
     };
 
 }

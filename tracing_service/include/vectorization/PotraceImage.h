@@ -6,6 +6,7 @@
 #include <vectorization/PixelColor.h>
 #include <vectorization/IBWRecognizer.h>
 #include <vectorization/PotracePath.h>
+#include <vectorization/Point2.h>
 
 #include <vector>
 
@@ -30,7 +31,7 @@ namespace Vectorization {
         //RB - right bottom. Gets the color of pixel located on the right below the point (x, y)
         PixelColor::Enum RB(Imaging::image_size_t x, Imaging::image_size_t y) const;
 
-        void InvertPixels(const std::vector<PotracePath::Point2>& pixels);
+        void InvertPixels(const std::vector<Point2>& pixels);
 
         //Gets the width of original image
         Imaging::image_size_t GetW() const;

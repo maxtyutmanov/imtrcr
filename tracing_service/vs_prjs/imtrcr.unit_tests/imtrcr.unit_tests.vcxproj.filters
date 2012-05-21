@@ -30,6 +30,9 @@
     <ClCompile Include="..\..\src\unit_tests\RasterImageStub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\unit_tests\graph_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\misc\test_move_to_output\8bit.bmp">

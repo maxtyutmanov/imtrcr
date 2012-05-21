@@ -15,11 +15,14 @@
     <ClInclude Include="..\..\include\utils\base64.h" />
     <ClInclude Include="..\..\include\utils\Collection.h" />
     <ClInclude Include="..\..\include\utils\Common.h" />
+    <ClInclude Include="..\..\include\utils\Graph.h" />
     <ClInclude Include="..\..\include\utils\Memory.h" />
     <ClInclude Include="..\..\include\utils\String.h" />
+    <ClInclude Include="..\..\include\utils\TwoDimArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\utils\base64.cpp" />
+    <ClCompile Include="..\..\src\utils\Graph.cpp" />
     <ClCompile Include="..\..\src\utils\String.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
