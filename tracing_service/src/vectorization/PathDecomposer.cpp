@@ -33,7 +33,7 @@ namespace Vectorization {
         for (image_size_t y = 0; y < height; ++y) {
             for (image_size_t x = 0; x < width; ++x) {
                 if (ctx.potraceImg.RB(x, y) == PixelColor::Black) {
-                    PotracePath path;
+                    PotracePath path(ctx.potraceImg.IsInvertedRB(x, y));
                     path.AddPoint(x, y);
                     path.AddPoint(x, y + 1);    //going to the bottom edge of the pixel
                     BuildPath(ctx.potraceImg, path);

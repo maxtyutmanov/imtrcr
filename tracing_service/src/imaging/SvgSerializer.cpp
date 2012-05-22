@@ -80,8 +80,17 @@ namespace Imaging {
         TiXmlElement pathEl("path");
 
         pathEl.SetAttribute("d", d.c_str());
-        //TODO: set color
-        pathEl.SetAttribute("stroke", "#000");
+        
+        
+        //TODO: rewrite :(
+
+        if (pPath->GetStrokeColor() == ArgbQuad::Black()) {
+            pathEl.SetAttribute("stroke", "#000");
+        }
+        else {
+            pathEl.SetAttribute("stroke", "#fff");
+        }
+        
 
         return pathEl;
     }

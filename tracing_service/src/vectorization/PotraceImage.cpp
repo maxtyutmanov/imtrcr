@@ -42,6 +42,10 @@ namespace Vectorization {
         return GetPixelAt(x, y, 1, 1);
     }
 
+    bool PotraceImage::IsInvertedRB(Imaging::image_size_t x, Imaging::image_size_t y) const {
+        return isInvertedMap[y * GetW() + x];
+    }
+
     void PotraceImage::InvertPixels(const vector<Point2>& pixels) {
         vector<Point2>::const_iterator it;
         const vector<Point2>::const_iterator pixelsEnd = pixels.end();

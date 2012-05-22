@@ -14,6 +14,7 @@ namespace Vectorization {
     class PotracePath {
     public:
         PotracePath();
+        PotracePath(bool inverted);
 
         Imaging::image_size_t StartX() const;
         Imaging::image_size_t StartY() const;
@@ -38,9 +39,12 @@ namespace Vectorization {
         bool IsStraight(int i, int j) const;
         //finds out if there is a possible segment from i-th to j-th vertex of path
         bool IsPossibleSegment(int i, int j) const;
+
+        bool IsInverted() const;
     private:
         std::vector<Point2> points;
         bool closed;
+        bool inverted;
 
         Point2 GetFirstPoint() const;
         Point2 GetCurPoint() const;

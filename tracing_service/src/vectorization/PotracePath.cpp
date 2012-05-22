@@ -15,7 +15,10 @@ namespace ImTrcr {
 namespace Vectorization {
 
     PotracePath::PotracePath()
-        : closed(false) {}
+        : closed(false), inverted(false) {}
+
+    PotracePath::PotracePath(bool inverted)
+        : closed(false), inverted(inverted) {}
 
     image_size_t PotracePath::StartX() const {
         return GetFirstPoint().x;
@@ -237,6 +240,10 @@ namespace Vectorization {
         else {
             return false;
         }
+    }
+
+    bool PotracePath::IsInverted() const {
+        return inverted;
     }
 
     Point2 PotracePath::GetFirstPoint() const {

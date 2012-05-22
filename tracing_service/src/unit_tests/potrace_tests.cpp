@@ -355,6 +355,59 @@ BOOST_AUTO_TEST_CASE(path_decomposer_test) {
 
 }
 
+BOOST_AUTO_TEST_CASE(path_decomposer_recognizes_nested_paths) {
+    RasterImageStub rasterImg(10, 10);
+
+    rasterImg.SetColor(1, 0, ArgbQuad::Black());
+    rasterImg.SetColor(2, 0, ArgbQuad::Black());
+    rasterImg.SetColor(3, 0, ArgbQuad::Black());
+
+    rasterImg.SetColor(0, 1, ArgbQuad::Black());
+    rasterImg.SetColor(1, 1, ArgbQuad::Black());
+    rasterImg.SetColor(3, 1, ArgbQuad::Black());
+    rasterImg.SetColor(4, 1, ArgbQuad::Black());
+
+    rasterImg.SetColor(0, 2, ArgbQuad::Black());
+    rasterImg.SetColor(4, 2, ArgbQuad::Black());
+    rasterImg.SetColor(5, 2, ArgbQuad::Black());
+
+    rasterImg.SetColor(0, 3, ArgbQuad::Black());
+    rasterImg.SetColor(2, 3, ArgbQuad::Black());
+    rasterImg.SetColor(5, 3, ArgbQuad::Black());
+
+    rasterImg.SetColor(0, 4, ArgbQuad::Black());
+    rasterImg.SetColor(5, 4, ArgbQuad::Black());
+
+    rasterImg.SetColor(0, 5, ArgbQuad::Black());
+    rasterImg.SetColor(1, 5, ArgbQuad::Black());
+    rasterImg.SetColor(5, 5, ArgbQuad::Black());
+
+    rasterImg.SetColor(1, 6, ArgbQuad::Black());
+    rasterImg.SetColor(2, 6, ArgbQuad::Black());
+    rasterImg.SetColor(4, 6, ArgbQuad::Black());
+    rasterImg.SetColor(5, 6, ArgbQuad::Black());
+
+    rasterImg.SetColor(2, 7, ArgbQuad::Black());
+    rasterImg.SetColor(3, 7, ArgbQuad::Black());
+    rasterImg.SetColor(4, 7, ArgbQuad::Black());
+
+    SimpleBWRecognizer r;
+    PotraceImage potraceImg(r, rasterImg);
+    VectorImage vectorImg;
+
+    TracingContext ctx(vectorImg, potraceImg);
+
+    PathDecomposer d;
+
+    d.FindClosedPaths(ctx);
+
+    BOOST_ASSERT(ctx.paths.size() == 3);
+
+    BOOST_CHECK(!ctx.paths[0].IsInverted());
+    BOOST_CHECK(ctx.paths[1].IsInverted());
+    BOOST_CHECK(!ctx.paths[2].IsInverted());
+}
+
 BOOST_AUTO_TEST_CASE(potrace_path_every_two_point_path_is_straight_test) {
     PotracePath p;
 
@@ -515,10 +568,10 @@ BOOST_AUTO_TEST_CASE(polygon_builder_test) {
     BOOST_ASSERT(ind.size() == 6);
 
     BOOST_CHECK(ind[0] == 0);
-    BOOST_CHECK(ind[1] == 1);
-    BOOST_CHECK(ind[2] == 5);
-    BOOST_CHECK(ind[3] == 11);
-    BOOST_CHECK(ind[4] == 15);
+    BOOST_CHECK(ind[1] == 4);
+    BOOST_CHECK(ind[2] == 9);
+    BOOST_CHECK(ind[3] == 12);
+    BOOST_CHECK(ind[4] == 16);
     BOOST_CHECK(ind[5] == 21);
 }
 

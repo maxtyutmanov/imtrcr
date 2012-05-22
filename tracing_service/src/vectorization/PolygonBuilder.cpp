@@ -62,6 +62,9 @@ namespace Vectorization {
                 if (path.IsPossibleSegment(i, j)) {
                     ajMx->At(i, j) = true;
                 }
+                else {
+                    break;
+                }
 
                 j = ArithmeticUtils::CyclicInc(j, pathPointsCount);
             }

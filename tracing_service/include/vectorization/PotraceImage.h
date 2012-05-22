@@ -31,6 +31,8 @@ namespace Vectorization {
         //RB - right bottom. Gets the color of pixel located on the right below the point (x, y)
         PixelColor::Enum RB(Imaging::image_size_t x, Imaging::image_size_t y) const;
 
+        bool IsInvertedRB(Imaging::image_size_t x, Imaging::image_size_t y) const;
+
         void InvertPixels(const std::vector<Point2>& pixels);
 
         //Gets the width of original image
