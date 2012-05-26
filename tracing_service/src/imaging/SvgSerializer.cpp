@@ -82,13 +82,13 @@ namespace Imaging {
         pathEl.SetAttribute("d", d.c_str());
         
         
-        //TODO: rewrite :(
+        //TODO: rewrite :( BTW, not stroke, but fill!!!!!!!
 
         if (pPath->GetStrokeColor() == ArgbQuad::Black()) {
-            pathEl.SetAttribute("stroke", "#000");
+            pathEl.SetAttribute("fill", "#000");
         }
         else {
-            pathEl.SetAttribute("stroke", "#fff");
+            pathEl.SetAttribute("fill", "#fff");
         }
         
 

@@ -54,7 +54,7 @@ namespace Vectorization {
             const vector<int>& pol = ctx.polygons[i].GetVerticesIndices();
             const vector<Point2>& pathPoints = ctx.paths[i].GetPoints();
 
-            Path* path = new Path(ArgbQuad::Black());
+            Path* path = new Path(ctx.paths[i].IsInverted() ? ArgbQuad::White() : ArgbQuad::Black());
 
             path->AddCommand(PathCommand::MoveToCommand(pathPoints[pol[0]].x, pathPoints[pol[0]].y));
 

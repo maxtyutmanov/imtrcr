@@ -1,0 +1,4 @@
+= form_tag({ :controller => :files, :action => :upload }, :method => :post, :multipart => true) do
+  
+  = file_field_tag :upload
+  = submit_tag 'Upload'
