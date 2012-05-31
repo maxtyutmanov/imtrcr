@@ -20,7 +20,7 @@ namespace Vectorization {
         const std::vector<int>& GetVerticesIndices() const;
         int GetVertexCount() const;
 
-        const Point2& operator[](size_t index) const;
+        const Point2& operator[] (unsigned int index) const;
 
         //is polygon white
         bool IsInverted() const;

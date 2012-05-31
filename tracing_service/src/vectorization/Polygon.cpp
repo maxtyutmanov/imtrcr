@@ -1,5 +1,7 @@
 #include <vectorization/Polygon.h>
 
+#include <stdexcept>
+
 using namespace std;
 
 namespace ImTrcr {

@@ -5,6 +5,8 @@
 
 #include <imaging/Square.h>
 
+#include <stdexcept>
+
 using namespace ImTrcr::Imaging::Primitives;
 using namespace ImTrcr::Imaging;
 using namespace ImTrcr::Utils;
@@ -79,7 +81,9 @@ namespace Vectorization {
         StraightLineEquation prev_next(prev, next);
 
         if (prev_next.IntersectsSquare(unitSquare)) {
-            useBezier = false;
+            useBezier = true;
+            z1 = Point2F::GetMidpoint(prev, cur);
+            z2 = Point2F::GetMidpoint(cur, next);
         }
         else {
             //draw four lines that are parallel to prev-next line and passes through one of the square's points

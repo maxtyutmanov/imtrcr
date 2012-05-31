@@ -50,7 +50,7 @@ namespace Vectorization {
         //random point on the l2 line
         Point2F p = l2.GetRandomPoint();
 
-        return abs(l1.a * p.GetX() + l1.b * p.GetY() + l1.c) / sqrt(l1.a * l1.a + l1.b * l1.b);
+        return std::abs(l1.a * p.GetX() + l1.b * p.GetY() + l1.c) / sqrt(l1.a * l1.a + l1.b * l1.b);
     }
 
     bool StraightLineEquation::IntersectsSquare(const Imaging::Square& square) const {

@@ -55,7 +55,7 @@ namespace Utils {
         }
 
         static bool RoughlyEq(float x1, float x2, float eps = 0.001f) {
-            if (abs(x1 - x2) < eps) {
+            if (std::abs(x1 - x2) < eps) {
                 return true;
             }
             else {
