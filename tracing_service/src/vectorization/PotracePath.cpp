@@ -194,7 +194,7 @@ namespace Vectorization {
         int pointIndex = ArithmeticUtils::CyclicInc(i, (int)points.size());
         while (pointIndex != j) {
             //max distance from approximating line segment to any of path's points is 1 px
-            bool ok = LineIsNotFurtherThan(f, points[pointIndex], 1);
+            bool ok = f.IntersectsSquare(Square(points[pointIndex].ToPoint2F(), 1.0f));
 
             if (!ok) {
                 return false;
@@ -204,26 +204,6 @@ namespace Vectorization {
         }
 
         return true;
-    }
-
-    bool PotracePath::LineIsNotFurtherThan(const StraightLineEquation& lineEq, const Point2& point, float maxDistance) {
-        float fLeftTop = lineEq(point.x - maxDistance, point.y - maxDistance);
-        float fLeftBottom = lineEq(point.x - maxDistance, point.y + maxDistance);
-        float fRightTop = lineEq(point.x + maxDistance, point.y - maxDistance);
-        float fRightBottom = lineEq(point.x + maxDistance, point.y + maxDistance);
-
-        if (fLeftTop == 0 || fLeftBottom == 0 || fRightTop == 0 || fRightBottom == 0) {
-            return true;
-        }
-        else if (
-            fLeftTop > 0 && fLeftBottom > 0 && fRightTop > 0 && fRightBottom > 0 ||
-            fLeftTop < 0 && fLeftBottom < 0 && fRightTop < 0 && fRightBottom < 0) {
-
-            return false;
-        }
-        else {
-            return true;
-        }
     }
 
     #pragma endregion

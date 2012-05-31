@@ -86,6 +86,7 @@
     <ClInclude Include="..\..\include\imaging\PointOutOfBitmapException.h" />
     <ClInclude Include="..\..\include\imaging\Primitive.h" />
     <ClInclude Include="..\..\include\imaging\RasterImage.h" />
+    <ClInclude Include="..\..\include\imaging\Square.h" />
     <ClInclude Include="..\..\include\imaging\SvgSerializer.h" />
     <ClInclude Include="..\..\include\imaging\VectorImage.h" />
     <ClInclude Include="..\..\include\imaging\WinBMP.h" />
@@ -100,6 +101,7 @@
     <ClCompile Include="..\..\src\imaging\Point2F.cpp" />
     <ClCompile Include="..\..\src\imaging\Primitive.cpp" />
     <ClCompile Include="..\..\src\imaging\RasterImage.cpp" />
+    <ClCompile Include="..\..\src\imaging\Square.cpp" />
     <ClCompile Include="..\..\src\imaging\SvgSerializer.cpp" />
     <ClCompile Include="..\..\src\imaging\VectorImage.cpp" />
     <ClCompile Include="..\..\src\imaging\WinBMP.cpp" />

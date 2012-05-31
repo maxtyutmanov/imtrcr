@@ -2,6 +2,7 @@
 #define VECTORIZATION_POINT2_H
 
 #include <imaging/Common.h>
+#include <imaging/Point2F.h>
 
 namespace ImTrcr {
 namespace Vectorization {
@@ -15,6 +16,10 @@ namespace Vectorization {
 
         bool operator == (const Point2& right) const {
             return this->x == right.x && this->y == right.y;
+        }
+
+        Imaging::Point2F ToPoint2F() const {
+            return Imaging::Point2F(x, y);
         }
 
         Imaging::image_size_t x;

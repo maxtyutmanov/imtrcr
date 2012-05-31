@@ -78,6 +78,9 @@
     <ClInclude Include="..\..\include\imaging\PathSerializer.h">
       <Filter>Header Files\Serialization</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\imaging\Square.h">
+      <Filter>Header Files\Primitives</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\imaging\RasterImage.cpp">
@@ -112,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\imaging\ArgbQuad.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\imaging\Square.cpp">
+      <Filter>Source Files\Primitives</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

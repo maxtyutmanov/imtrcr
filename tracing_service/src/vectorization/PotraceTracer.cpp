@@ -8,6 +8,7 @@
 #include <vectorization/TracingContext.h>
 #include <vectorization/PathDecomposer.h>
 #include <vectorization/PolygonBuilder.h>
+#include <vectorization/PolygonSmoother.h>
 
 #include <imaging/Path.h>
 
@@ -50,7 +51,7 @@ namespace Vectorization {
 
         //TODO: rewrite
 
-        for (int i = 0; i < ctx.paths.size(); ++i) {
+        /*for (int i = 0; i < ctx.paths.size(); ++i) {
             const vector<int>& pol = ctx.polygons[i].GetVerticesIndices();
             const vector<Point2>& pathPoints = ctx.paths[i].GetPoints();
 
@@ -65,7 +66,7 @@ namespace Vectorization {
             path->AddCommand(PathCommand::ClosePathCommand());
 
             pVectorImg->AddPrimitive(path);
-        }
+        }*/
         
         return &ctx.vectorImg;
     }
@@ -85,7 +86,8 @@ namespace Vectorization {
     }
 
     void PotraceTracer::TrasformToVectorOutlines(TracingContext& ctx) const {
-
+        PolygonSmoother smoother;
+        smoother.SmoothPolygons(ctx);
     }
 }
 }

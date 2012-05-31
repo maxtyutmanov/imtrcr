@@ -1,6 +1,8 @@
 #ifndef UTILS_ARITHMETIC_H
 #define UTILS_ARITHMETIC_H
 
+#include <cmath>
+
 namespace ImTrcr {
 namespace Utils {
 
@@ -49,6 +51,15 @@ namespace Utils {
             }
             else {
                 return result - period;
+            }
+        }
+
+        static bool RoughlyEq(float x1, float x2, float eps = 0.001f) {
+            if (abs(x1 - x2) < eps) {
+                return true;
+            }
+            else {
+                return false;
             }
         }
     };

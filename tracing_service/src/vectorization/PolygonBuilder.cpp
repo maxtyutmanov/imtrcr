@@ -18,7 +18,7 @@ namespace Vectorization {
         //number of polygons = number of paths, so let's optimize this a little bit
         ctx.polygons.reserve(ctx.paths.size());
 
-        vector<PotracePath>::const_iterator it;
+        vector<PotracePath>::iterator it;
 
         for (it = ctx.paths.begin(); it != ctx.paths.end(); ++it) {
             BuildOptimalPolygon(*it, ctx);
@@ -36,7 +36,7 @@ namespace Vectorization {
             vector<int> shortestCycle;
             GraphUtils::FindShortestCycle(*segmentsGraphAjMx, shortestCycle);
 
-            Polygon p(shortestCycle);
+            Polygon p(&path, shortestCycle);
 
             ctx.polygons.push_back(p);
             MemoryUtils::SafeFree(&segmentsGraphAjMx);

@@ -60,6 +60,9 @@
     <ClInclude Include="..\..\include\vectorization\StraightLineEquation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\vectorization\PolygonSmoother.h">
+      <Filter>Header Files\Potrace</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\vectorization\PotraceImage.cpp">
@@ -85,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\vectorization\StraightLineEquation.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\vectorization\PolygonSmoother.cpp">
+      <Filter>Source Files\Potrace</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

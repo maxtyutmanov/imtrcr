@@ -17,6 +17,7 @@
     <ClInclude Include="..\..\include\vectorization\Point2.h" />
     <ClInclude Include="..\..\include\vectorization\Polygon.h" />
     <ClInclude Include="..\..\include\vectorization\PolygonBuilder.h" />
+    <ClInclude Include="..\..\include\vectorization\PolygonSmoother.h" />
     <ClInclude Include="..\..\include\vectorization\PotracePath.h" />
     <ClInclude Include="..\..\include\vectorization\SimpleBWRecognizer.h" />
     <ClInclude Include="..\..\include\vectorization\PixelColor.h" />
@@ -29,6 +30,7 @@
     <ClCompile Include="..\..\src\vectorization\PathDecomposer.cpp" />
     <ClCompile Include="..\..\src\vectorization\Polygon.cpp" />
     <ClCompile Include="..\..\src\vectorization\PolygonBuilder.cpp" />
+    <ClCompile Include="..\..\src\vectorization\PolygonSmoother.cpp" />
     <ClCompile Include="..\..\src\vectorization\PotraceImage.cpp" />
     <ClCompile Include="..\..\src\vectorization\PotracePath.cpp" />
     <ClCompile Include="..\..\src\vectorization\PotraceTracer.cpp" />

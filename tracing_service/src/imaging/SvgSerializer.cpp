@@ -58,6 +58,9 @@ namespace Imaging {
             case PathCommand::QuadraticBezierTo:
                 pathSerializer.QuadraticBezier(cmd);
                 break;
+            case PathCommand::CubicBezier:
+                pathSerializer.CubicBezier(cmd);
+                break;
             case PathCommand::ClosePath:
                 pathSerializer.ClosePath();
                 break;
@@ -81,8 +84,7 @@ namespace Imaging {
 
         pathEl.SetAttribute("d", d.c_str());
         
-        
-        //TODO: rewrite :( BTW, not stroke, but fill!!!!!!!
+        //TODO: rewrite
 
         if (pPath->GetStrokeColor() == ArgbQuad::Black()) {
             pathEl.SetAttribute("fill", "#000");
