@@ -16,6 +16,7 @@ namespace Imaging {
         void SetY(float y);
 
         static Point2F GetMidpoint(const Point2F& first, const Point2F& second);
+        static float GetDistance(const Point2F& first, const Point2F& second);
     private:
         float x;
         float y;

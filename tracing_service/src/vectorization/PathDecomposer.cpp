@@ -39,9 +39,8 @@ namespace Vectorization {
                     BuildPath(ctx.potraceImg, path);
                     vector<Point2> interiorPoints = path.GetInteriorPoints();
                     ctx.potraceImg.InvertPixels(interiorPoints);
-                    //TODO: implement despeckling
                     
-                    if (interiorPoints.size() > 10) {
+                    if (ctx.despecklingPixels == 0 || interiorPoints.size() > ctx.despecklingPixels) {
                        ctx.paths.push_back(path);
                     }
                 }

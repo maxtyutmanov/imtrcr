@@ -14,12 +14,16 @@ namespace Vectorization {
 
     struct TracingContext {
         TracingContext(Imaging::VectorImage& vectorImg, PotraceImage& potraceImg)
-            : vectorImg(vectorImg), potraceImg(potraceImg) {}
+            : vectorImg(vectorImg), potraceImg(potraceImg) {
+
+            despecklingPixels = 0;
+        }
 
         Imaging::VectorImage& vectorImg;
         PotraceImage& potraceImg;
         std::vector<PotracePath> paths;
         std::vector<Polygon> polygons;
+        int despecklingPixels;
     };
 
 }

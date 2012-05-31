@@ -110,8 +110,17 @@ namespace Vectorization {
             StraightLineEquation cur_next(cur, next);
 
             z1 = StraightLineEquation::GetIntersectionPoint(L, prev_cur);
-            z2 = StraightLineEquation::GetIntersectionPoint(L, cur_next);
-            useBezier = true;
+
+            float gamma = Point2F::GetDistance(prev, z1) / Point2F::GetDistance(prev, cur);
+            float alpha = gamma * 1.333f;
+
+            if (alpha < 1.0f) {
+                z2 = StraightLineEquation::GetIntersectionPoint(L, cur_next);
+                useBezier = true;
+            }
+            else {
+                useBezier = false;
+            }
         }
 
         //return CornerSmoothingResult::();

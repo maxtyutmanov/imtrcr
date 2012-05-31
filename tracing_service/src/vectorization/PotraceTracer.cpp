@@ -49,25 +49,6 @@ namespace Vectorization {
             throw;
         }
 
-        //TODO: rewrite
-
-        /*for (int i = 0; i < ctx.paths.size(); ++i) {
-            const vector<int>& pol = ctx.polygons[i].GetVerticesIndices();
-            const vector<Point2>& pathPoints = ctx.paths[i].GetPoints();
-
-            Path* path = new Path(ctx.paths[i].IsInverted() ? ArgbQuad::White() : ArgbQuad::Black());
-
-            path->AddCommand(PathCommand::MoveToCommand(pathPoints[pol[0]].x, pathPoints[pol[0]].y));
-
-            for (int k = 1; k < pol.size(); ++k) {
-                path->AddCommand(PathCommand::LineToCommand(pathPoints[pol[k]].x, pathPoints[pol[k]].y));
-            }
-
-            path->AddCommand(PathCommand::ClosePathCommand());
-
-            pVectorImg->AddPrimitive(path);
-        }*/
-        
         return &ctx.vectorImg;
     }
 

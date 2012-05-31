@@ -1,5 +1,7 @@
 #include <imaging/Point2F.h>
 
+#include <cmath>
+
 namespace ImTrcr {
 namespace Imaging {
 
@@ -29,5 +31,8 @@ namespace Imaging {
         return Point2F((first.GetX() + second.GetX()) / 2.0f, (first.GetY() + second.GetY()) / 2.0f);
     }
 
+    float Point2F::GetDistance(const Point2F& p1, const Point2F& p2) {
+        return sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+    }
 }
 }
