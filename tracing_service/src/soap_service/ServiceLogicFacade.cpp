@@ -8,6 +8,7 @@
 
 #include <utils/Memory.h>
 #include <utils/base64.h>
+#include <utils/String.h>
 
 #include <assert.h>
 #include <sstream>
@@ -20,21 +21,33 @@ using namespace std;
 namespace ImTrcr {
 namespace SoapService {
 
-    ServiceLogicFacade::ServiceLogicFacade(Imaging::ISvgSerializer* svgSerializer, Vectorization::ITracer* tracer) {
+    ServiceLogicFacade::ServiceLogicFacade(Imaging::ISvgSerializer* svgSerializer, Vectorization::ITracer* tracer, ISecurityModule* securityModule, ILogger* logger) {
         assert(svgSerializer != NULL);
         assert(tracer != NULL);
+        assert(securityModule != NULL);
+        assert(logger != NULL);
 
         this->svgSerializer = svgSerializer;
         this->tracer = tracer;
+        this->securityModule = securityModule;
+        this->logger = logger;
     }
 
     ServiceLogicFacade::~ServiceLogicFacade() {
         MemoryUtils::SafeFree(&svgSerializer);
         MemoryUtils::SafeFree(&tracer);
+        MemoryUtils::SafeFree(&securityModule);
+        MemoryUtils::SafeFree(&logger);
     }
 
     int ServiceLogicFacade::Trace(struct soap* soap, _ns2__Trace* request, _ns2__TraceResponse* response) const {
         
+        if (!securityModule->CheckSystemID(request->authToken)) {
+            response->statusCode = StatusCodes::FORBIDDEN;
+            logger->LogMessage("Authentication token {" + request->authToken + "} is invalid. Access denied.");
+            return SOAP_OK;
+        }
+
         RasterImage* rasterImage = NULL;
         VectorImage* vectorImage = NULL;
         TiXmlDocument* svgXmlDocument = NULL;
@@ -60,6 +73,7 @@ namespace SoapService {
             }
             catch (const ImTrcr::Imaging::InvalidBmpStreamException& ex) {
                 response->statusCode = StatusCodes::WRONG_FORMAT_ERROR;
+                logger->LogMessage("Wrong format of received image. Vectorization failed. External system's authentication token is {" + request->authToken + "}.");
                 goto CLEANUP;
             }
             catch (...) {
@@ -67,9 +81,19 @@ namespace SoapService {
                 goto CLEANUP;
             }
 
+            TracingOptions opts;
+            if (!StringUtils::TryParseInt(request->despecklingPixels, opts.despecklingPixels)) {
+                response->statusCode = StatusCodes::WRONG_FORMAT_ERROR;
+                goto CLEANUP;
+            }
+            if (!StringUtils::TryParseInt(request->angularity, opts.angularity)) {
+                response->statusCode = StatusCodes::WRONG_FORMAT_ERROR;
+                goto CLEANUP;
+            }
+
             //trace RasterImage instance to VectorImage instance
             try {
-                vectorImage = tracer->Trace(*rasterImage);
+                vectorImage = tracer->Trace(*rasterImage, opts);
             }
             catch (...) {
                 response->statusCode = StatusCodes::TRACING_ERROR;

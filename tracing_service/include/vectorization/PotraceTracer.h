@@ -14,7 +14,7 @@ namespace Vectorization {
         PotraceTracer(IBWRecognizer* bwRecognizer);
         virtual ~PotraceTracer();
 
-        virtual Imaging::VectorImage* Trace(const Imaging::RasterImage& rasterImage) const;
+        virtual Imaging::VectorImage* Trace(const Imaging::RasterImage& rasterImage, const TracingOptions& opts) const;
     private:
         //Path decomposition
         const PotraceTracer& DecomposeIntoPaths(TracingContext& ctx) const;

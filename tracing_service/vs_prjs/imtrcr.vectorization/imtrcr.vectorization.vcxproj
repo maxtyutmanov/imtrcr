@@ -25,6 +25,7 @@
     <ClInclude Include="..\..\include\vectorization\PotraceTracer.h" />
     <ClInclude Include="..\..\include\vectorization\StraightLineEquation.h" />
     <ClInclude Include="..\..\include\vectorization\TracingContext.h" />
+    <ClInclude Include="..\..\include\vectorization\TracingOptions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\vectorization\PathDecomposer.cpp" />

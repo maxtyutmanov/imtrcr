@@ -7,6 +7,7 @@ struct StatusCodes {
     static const char WRONG_FORMAT_ERROR[];
     static const char TRACING_ERROR[];
     static const char UNKNOWN_ERROR[];
+    static const char FORBIDDEN[];
 };
 
 #endif

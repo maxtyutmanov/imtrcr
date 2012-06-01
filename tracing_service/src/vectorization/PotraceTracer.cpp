@@ -32,13 +32,14 @@ namespace Vectorization {
         MemoryUtils::SafeFree(&bwRecognizer);
     }
 
-    VectorImage* PotraceTracer::Trace(const RasterImage& rasterImage) const {
+    VectorImage* PotraceTracer::Trace(const RasterImage& rasterImage, const TracingOptions& opts) const {
 
         PotraceImage potraceImg(*bwRecognizer, rasterImage);
         VectorImage* pVectorImg = new VectorImage();
 
         //prepare tracing context
         TracingContext ctx(*pVectorImg, potraceImg);
+        ctx.opts = opts;
 
         try {
             //do tracing

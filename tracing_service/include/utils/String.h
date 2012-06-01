@@ -9,6 +9,7 @@ namespace Utils {
     class StringUtils {
     public:
         static void TrimEnd(std::string& str);
+        static bool TryParseInt(const std::string& str, int& result);
     };
 
 }

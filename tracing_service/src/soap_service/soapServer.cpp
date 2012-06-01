@@ -14,7 +14,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 #endif
 #include "soapH.h"
 
-SOAP_SOURCE_STAMP("@(#) soapServer.cpp ver 2.8.8 2012-05-01 09:15:56 GMT")
+SOAP_SOURCE_STAMP("@(#) soapServer.cpp ver 2.8.8 2012-06-01 16:47:43 GMT")
 
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_serve(struct soap *soap)

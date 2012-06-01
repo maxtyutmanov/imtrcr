@@ -6,6 +6,8 @@
 #include <vectorization/ITracer.h>
 
 #include <soap_service/soapH.h>
+#include <soap_service/ISecurityModule.h>
+#include <soap_service/ILogger.h>
 
 namespace ImTrcr {
 namespace SoapService {
@@ -13,13 +15,15 @@ namespace SoapService {
     //Forms abstraction layer above logic for handling SOAP requests to tracing service
     class ServiceLogicFacade {
     public:
-        ServiceLogicFacade(Imaging::ISvgSerializer* svgSerializer, Vectorization::ITracer* tracer);
+        ServiceLogicFacade(Imaging::ISvgSerializer* svgSerializer, Vectorization::ITracer* tracer, ISecurityModule* securityModule, ILogger* logger);
         virtual ~ServiceLogicFacade();
 
         int Trace(struct soap* soap, _ns2__Trace* request, _ns2__TraceResponse* response) const;
     private:
         Imaging::ISvgSerializer* svgSerializer;
         Vectorization::ITracer* tracer;
+        ISecurityModule* securityModule;
+        ILogger* logger;
     };
 
 }

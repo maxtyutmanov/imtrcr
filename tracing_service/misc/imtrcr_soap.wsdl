@@ -15,7 +15,10 @@
       <xsd:element name="Trace">
         <xsd:complexType>
           <xsd:sequence>
+            <xsd:element name="authToken" type="xsd:string" />
             <xsd:element name="imageData" type="xsd:string" />
+            <xsd:element name="despecklingPixels" type="xsd:integer" default="0" />
+            <xsd:element name="angularity" type="xsd:integer" default="0" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>

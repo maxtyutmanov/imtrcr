@@ -49,5 +49,11 @@
     <ClInclude Include="..\..\include\unit_tests\RasterImageStub.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\unit_tests\SecurityModuleMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\unit_tests\LoggerMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

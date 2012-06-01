@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\soap_service\DbLogger.cpp" />
+    <ClCompile Include="..\..\src\soap_service\SecurityModule.cpp" />
     <ClCompile Include="..\..\src\soap_service\ServiceLogicFacade.cpp" />
     <ClCompile Include="..\..\src\soap_service\soapC.cpp" />
     <ClCompile Include="..\..\src\soap_service\soapServer.cpp" />
@@ -27,6 +29,9 @@
     <ProjectReference Include="..\imtrcr.vectorization\imtrcr.vectorization.vcxproj">
       <Project>{61b68d44-90e2-4a66-a628-9407f70aaa79}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\sqlite3\sqlite3.vcxproj">
+      <Project>{9774c87e-9c64-4038-b948-8b2f88ba2a9b}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\tinyxml\tinyxml.vcxproj">
       <Project>{1442683a-af37-4000-a5b3-a3ee78cd4a6e}</Project>
     </ProjectReference>
@@ -35,6 +40,11 @@
     <CustomBuild Include="..\..\misc\imtrcr_soap.wsdl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\soap_service\DataAccessException.h" />
+    <ClInclude Include="..\..\include\soap_service\DbLogger.h" />
+    <ClInclude Include="..\..\include\soap_service\ILogger.h" />
+    <ClInclude Include="..\..\include\soap_service\ISecurityModule.h" />
+    <ClInclude Include="..\..\include\soap_service\SecurityModule.h" />
     <ClInclude Include="..\..\include\soap_service\ServiceLogicFacade.h" />
     <ClInclude Include="..\..\include\soap_service\soapH.h" />
     <ClInclude Include="..\..\include\soap_service\soapImTrcrSoapBindingObject.h" />

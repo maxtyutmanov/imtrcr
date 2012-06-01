@@ -40,7 +40,7 @@ namespace Vectorization {
                     vector<Point2> interiorPoints = path.GetInteriorPoints();
                     ctx.potraceImg.InvertPixels(interiorPoints);
                     
-                    if (ctx.despecklingPixels == 0 || interiorPoints.size() > ctx.despecklingPixels) {
+                    if (ctx.opts.despecklingPixels == 0 || interiorPoints.size() > ctx.opts.despecklingPixels) {
                        ctx.paths.push_back(path);
                     }
                 }

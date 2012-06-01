@@ -63,6 +63,9 @@
     <ClInclude Include="..\..\include\vectorization\PolygonSmoother.h">
       <Filter>Header Files\Potrace</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\vectorization\TracingOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\vectorization\PotraceImage.cpp">

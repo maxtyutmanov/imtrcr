@@ -15,7 +15,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 
 #include "soapH.h"
 
-SOAP_SOURCE_STAMP("@(#) soapC.cpp ver 2.8.8 2012-05-01 09:15:56 GMT")
+SOAP_SOURCE_STAMP("@(#) soapC.cpp ver 2.8.8 2012-06-01 16:47:43 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -757,14 +757,20 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns2__TraceResponse(struct soap *soap, int 
 void _ns2__Trace::soap_default(struct soap *soap)
 {
 	this->soap = soap;
+	soap_default_std__string(soap, &this->_ns2__Trace::authToken);
 	soap_default_std__string(soap, &this->_ns2__Trace::imageData);
+	soap_default_xsd__integer(soap, &this->_ns2__Trace::despecklingPixels);
+	soap_default_xsd__integer(soap, &this->_ns2__Trace::angularity);
 	/* transient soap skipped */
 }
 
 void _ns2__Trace::soap_serialize(struct soap *soap) const
 {
 	(void)soap; /* appease -Wall -Werror */
+	soap_serialize_std__string(soap, &this->_ns2__Trace::authToken);
 	soap_serialize_std__string(soap, &this->_ns2__Trace::imageData);
+	soap_serialize_xsd__integer(soap, &this->_ns2__Trace::despecklingPixels);
+	soap_serialize_xsd__integer(soap, &this->_ns2__Trace::angularity);
 	/* transient soap skipped */
 }
 
@@ -777,7 +783,13 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns2__Trace(struct soap *soap, const char *ta
 {
 	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__ns2__Trace), type))
 		return soap->error;
+	if (soap_out_std__string(soap, "authToken", -1, &(a->_ns2__Trace::authToken), ""))
+		return soap->error;
 	if (soap_out_std__string(soap, "imageData", -1, &(a->_ns2__Trace::imageData), ""))
+		return soap->error;
+	if (soap_out_xsd__integer(soap, "despecklingPixels", -1, &(a->_ns2__Trace::despecklingPixels), ""))
+		return soap->error;
+	if (soap_out_xsd__integer(soap, "angularity", -1, &(a->_ns2__Trace::angularity), ""))
 		return soap->error;
 	/* transient soap skipped */
 	return soap_element_end_out(soap, tag);
@@ -803,14 +815,32 @@ SOAP_FMAC3 _ns2__Trace * SOAP_FMAC4 soap_in__ns2__Trace(struct soap *soap, const
 			return (_ns2__Trace *)a->soap_in(soap, tag, type);
 		}
 	}
+	size_t soap_flag_authToken1 = 1;
 	size_t soap_flag_imageData1 = 1;
+	size_t soap_flag_despecklingPixels1 = 1;
+	size_t soap_flag_angularity1 = 1;
 	if (soap->body && !*soap->href)
 	{
 		for (;;)
 		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_authToken1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_std__string(soap, "authToken", &(a->_ns2__Trace::authToken), "xsd:string"))
+				{	soap_flag_authToken1--;
+					continue;
+				}
 			if (soap_flag_imageData1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
 				if (soap_in_std__string(soap, "imageData", &(a->_ns2__Trace::imageData), "xsd:string"))
 				{	soap_flag_imageData1--;
+					continue;
+				}
+			if (soap_flag_despecklingPixels1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_xsd__integer(soap, "despecklingPixels", &(a->_ns2__Trace::despecklingPixels), "xsd:integer"))
+				{	soap_flag_despecklingPixels1--;
+					continue;
+				}
+			if (soap_flag_angularity1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_xsd__integer(soap, "angularity", &(a->_ns2__Trace::angularity), "xsd:integer"))
+				{	soap_flag_angularity1--;
 					continue;
 				}
 			/* transient soap skipped */
@@ -829,7 +859,7 @@ SOAP_FMAC3 _ns2__Trace * SOAP_FMAC4 soap_in__ns2__Trace(struct soap *soap, const
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
-	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_imageData1 > 0))
+	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_authToken1 > 0 || soap_flag_imageData1 > 0 || soap_flag_despecklingPixels1 > 0 || soap_flag_angularity1 > 0))
 	{	soap->error = SOAP_OCCURS;
 		return NULL;
 	}

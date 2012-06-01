@@ -53,7 +53,10 @@ compiling, linking, and/or using OpenSSL is allowed.
 class SOAP_CMAC _ns2__Trace
 {
 public:
+	std::string authToken;	/* required element of type xsd:string */
 	std::string imageData;	/* required element of type xsd:string */
+	std::string despecklingPixels;	/* required element of type xsd:integer */
+	std::string angularity;	/* required element of type xsd:integer */
 	struct soap *soap;	/* transient */
 public:
 	virtual int soap_type() const { return 10; } /* = unique id SOAP_TYPE__ns2__Trace */

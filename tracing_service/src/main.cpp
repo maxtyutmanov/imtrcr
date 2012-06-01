@@ -12,11 +12,14 @@
 
 #include <utils/base64.h>
 #include <utils/Memory.h>
+#include <utils/String.h>
 
 #include <soap_service/soapH.h>
 #include <soap_service/StatusCodes.h>
 #include <soap_service/ServiceLogicFacade.h>
 #include <soap_service/ImTrcrSoapBinding.nsmap>
+#include <soap_service/SecurityModule.h>
+#include <soap_service/DbLogger.h>
 
 using namespace ImTrcr::Imaging;
 using namespace ImTrcr::Vectorization;
@@ -27,7 +30,22 @@ using namespace std;
 ServiceLogicFacade* serviceLogic = NULL;
 
 int main(int argc, char* argv[]) {
-    serviceLogic = new ServiceLogicFacade(new SvgSerializer(), new PotraceTracer(new SimpleBWRecognizer()));
+    if (argc < 3) {
+        cerr << "Two args are required: 1) port 2) path to sqlite3 database" << endl;
+        return -1;
+    }
+
+    int portNumber;
+
+    if (!StringUtils::TryParseInt(argv[1], portNumber)) {
+        cerr << "Wrong port number" << endl;
+        return -1;
+    }
+
+    ISecurityModule* sm = new SecurityModule(argv[2]);
+    ILogger* logger = new DbLogger(argv[2]);
+
+    serviceLogic = new ServiceLogicFacade(new SvgSerializer(), new PotraceTracer(new SimpleBWRecognizer()), sm, logger);
 
     struct soap soap;
 
@@ -35,7 +53,7 @@ int main(int argc, char* argv[]) {
 
     soap_init(&soap);
 
-    master = soap_bind(&soap, NULL, 55555, 100);
+    master = soap_bind(&soap, NULL, portNumber, 100);
 
     if (master < 0) {
         soap_print_fault(&soap, stderr);
