@@ -42,17 +42,17 @@ namespace SoapService {
 
     int ServiceLogicFacade::Trace(struct soap* soap, _ns2__Trace* request, _ns2__TraceResponse* response) const {
         
-        if (!securityModule->CheckSystemID(request->authToken)) {
-            response->statusCode = StatusCodes::FORBIDDEN;
-            logger->LogMessage("Authentication token {" + request->authToken + "} is invalid. Access denied.");
-            return SOAP_OK;
-        }
-
         RasterImage* rasterImage = NULL;
         VectorImage* vectorImage = NULL;
         TiXmlDocument* svgXmlDocument = NULL;
 
         try {
+        
+            if (!securityModule->CheckSystemID(request->authToken)) {
+                response->statusCode = StatusCodes::FORBIDDEN;
+                logger->LogMessage("Authentication token {" + request->authToken + "} is invalid. Access denied.");
+                return SOAP_OK;
+            }
 
             //decode image data from base64
             string decodedImgData;

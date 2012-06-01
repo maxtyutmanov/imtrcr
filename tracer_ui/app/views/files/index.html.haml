@@ -1,4 +1,11 @@
 = form_tag({ :controller => :files, :action => :upload }, :method => :post, :multipart => true) do
   
   = file_field_tag :upload
+  %br
+  = label :settings, :angularity, 'Angularity (value from 0 to 100)'
+  = text_field :settings, :angularity
+  %br
+  = label :settings, :despeckling, 'Despeckling (min number of pixels in closed path)'
+  = text_field :settings, :despeckling
+  %br
   = submit_tag 'Upload'

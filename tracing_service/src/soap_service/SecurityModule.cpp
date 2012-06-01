@@ -26,7 +26,7 @@ namespace SoapService {
             FROM \
                 external_systems \
             WHERE \
-                authToken = '" + systemID + "'";
+                auth_token = '" + systemID + "'";
 
         sqlite3_stmt* pStmt;
 
