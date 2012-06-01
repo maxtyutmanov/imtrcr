@@ -1,4 +1,7 @@
 #include <utils/String.h>
+#include <limits.h>
+#include <errno.h>
+#include <cstdlib>
 
 using namespace std;
 
