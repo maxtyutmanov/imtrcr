@@ -36,7 +36,7 @@ obj_dirs :
 	mkdir -p $(objects_dirs)
 
 $(libs_archives) :
-	$(foreach lib_dir, $(relative_libs_dirs), make --directory=$(lib_dir) create_archive)
+	$(foreach lib_dir, $(relative_libs_dirs), make --directory=$(lib_dir) create_archive;)
 
 VPATH = ../../
 
