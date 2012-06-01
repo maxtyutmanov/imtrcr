@@ -31,8 +31,8 @@ namespace Vectorization {
                 : isBezier(isBezier), z1(z1), z2(z2) { }
         };
 
-        Imaging::Primitives::Path* SmoothOnePolygon(const Polygon& polygon);
-        CornerSmoothingResult TrySmoothCorner(const Imaging::Point2F& prev, const Imaging::Point2F& cur, const Imaging::Point2F& next);
+        Imaging::Primitives::Path* SmoothOnePolygon(TracingContext& ctx, const Polygon& polygon);
+        CornerSmoothingResult TrySmoothCorner(TracingContext& ctx, const Imaging::Point2F& prev, const Imaging::Point2F& cur, const Imaging::Point2F& next);
 
         
     };

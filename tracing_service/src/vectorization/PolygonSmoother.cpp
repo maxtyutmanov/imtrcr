@@ -22,12 +22,12 @@ namespace Vectorization {
         }
 
         for (size_t i = 0; i < ctx.paths.size(); ++i) {
-            Path* smoothed = SmoothOnePolygon(ctx.polygons[i]);
+            Path* smoothed = SmoothOnePolygon(ctx, ctx.polygons[i]);
             ctx.vectorImg.AddPrimitive(smoothed);
         }
     }
 
-    Path* PolygonSmoother::SmoothOnePolygon(const Polygon& polygon) {
+    Path* PolygonSmoother::SmoothOnePolygon(TracingContext& ctx, const Polygon& polygon) {
         const int vertexCount = polygon.GetVertexCount();
 
         ArgbQuad fillColor = polygon.IsInverted() ? ArgbQuad::White() : ArgbQuad::Black();
@@ -50,7 +50,7 @@ namespace Vectorization {
             Point2F prevMidpoint = Point2F::GetMidpoint(prevPoint, curPoint);
             Point2F nextMidpoint = Point2F::GetMidpoint(curPoint, nextPoint);
 
-            CornerSmoothingResult smoothResult = TrySmoothCorner(prevMidpoint, curPoint, nextMidpoint);
+            CornerSmoothingResult smoothResult = TrySmoothCorner(ctx, prevMidpoint, curPoint, nextMidpoint);
 
             if (smoothResult.isBezier) {
                 //approximate the vertex by cubic bezier curve
@@ -70,7 +70,7 @@ namespace Vectorization {
         return p;
     }
 
-    PolygonSmoother::CornerSmoothingResult PolygonSmoother::TrySmoothCorner(const Point2F& prev, const Point2F& cur, const Point2F& next) {
+    PolygonSmoother::CornerSmoothingResult PolygonSmoother::TrySmoothCorner(TracingContext& ctx, const Point2F& prev, const Point2F& cur, const Point2F& next) {
         bool useBezier = false;
         Point2F z1;
         Point2F z2;
@@ -81,9 +81,14 @@ namespace Vectorization {
         StraightLineEquation prev_next(prev, next);
 
         if (prev_next.IntersectsSquare(unitSquare)) {
-            useBezier = true;
-            z1 = Point2F::GetMidpoint(prev, cur);
-            z2 = Point2F::GetMidpoint(cur, next);
+            if (ctx.opts.angularity != 0) {
+                useBezier = true;
+                z1 = Point2F::GetMidpoint(prev, cur);
+                z2 = Point2F::GetMidpoint(cur, next);
+            }
+            else {
+                useBezier = false;
+            }
         }
         else {
             //draw four lines that are parallel to prev-next line and passes through one of the square's points
@@ -114,7 +119,10 @@ namespace Vectorization {
             float gamma = Point2F::GetDistance(prev, z1) / Point2F::GetDistance(prev, cur);
             float alpha = gamma * 1.333f;
 
-            if (alpha < 1.0f) {
+            float smoothCoeff = (100.0f - ctx.opts.angularity) / 100.0f;
+            float alphaMax = 1.3334f * smoothCoeff;
+
+            if (alpha < alphaMax) {
                 z2 = StraightLineEquation::GetIntersectionPoint(L, cur_next);
                 useBezier = true;
             }
