@@ -4,6 +4,9 @@ TracerUi::Application.routes.draw do
   
   root :to => 'files#index'
   match 'upload' => 'files#upload'
+  
+  resources :external_systems
+  resources :events
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

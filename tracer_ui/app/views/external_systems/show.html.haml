@@ -1,0 +1,15 @@
+-# in app/views/external_systems/show.html.haml
+
+%h2 Details about #{@system.name}
+
+%ul#details
+  %li
+    Name:
+    = @system.name
+  %li
+    Authentication token:
+    = @system.auth_token
+
+= link_to 'Edit', edit_external_system_path(@system)
+= button_to 'Delete', external_system_path(@system), :method => :delete, :confirm => 'Are you sure?'
+= link_to 'Back to systems list', external_systems_path

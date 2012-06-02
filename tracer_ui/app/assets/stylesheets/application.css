@@ -41,22 +41,22 @@ h1.title {
   font-size: 2em;
   font-style: normal;
 }
-table#movies {
+table#systems {
   margin: 10px;
   border-collapse: collapse;
   width: 100%;
   border-bottom: 2px solid black;
 }
-table#movies th {
+table#systems th {
   border: 2px solid white;
   font-weight: bold;
   background-color: wheat;
 }
-table#movies th, table#movies td {
+table#systems th, table#systems td {
   padding: 4px;
   text-align: left;
 }
-table#movies th.hilite {
+table#systems th.hilite {
     background-color: yellow;
 }
 #notice #warning {

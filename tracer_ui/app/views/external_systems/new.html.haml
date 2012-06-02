@@ -1,0 +1,11 @@
+%h1 Create New External System
+
+= form_tag external_systems_path do
+
+  = label :system, :name, 'Name'
+  = text_field :system, 'name'
+
+  = label :system, :auth_token, 'Authentication token'
+  = text_field :system, 'auth_token'
+
+  = submit_tag 'Save Changes'

@@ -73,11 +73,12 @@ namespace SoapService {
             }
             catch (const ImTrcr::Imaging::InvalidBmpStreamException& ex) {
                 response->statusCode = StatusCodes::WRONG_FORMAT_ERROR;
-                logger->LogMessage("Wrong format of received image. Vectorization failed. External system's authentication token is {" + request->authToken + "}.");
+                logger->LogMessage("Wrong format of received image. Vectorization failed. Authentication token of external system is {" + request->authToken + "}.");
                 goto CLEANUP;
             }
             catch (...) {
                 response->statusCode = StatusCodes::WRONG_FORMAT_ERROR;
+                logger->LogMessage("Wrong format of received image. Vectorization failed. Authentication token of external system is {" + request->authToken + "}.");
                 goto CLEANUP;
             }
 

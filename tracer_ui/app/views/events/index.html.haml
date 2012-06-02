@@ -1,0 +1,14 @@
+-#  This file is app/views/events/index.html.haml
+%h1 All Events
+
+%table#systems
+  %thead
+    %tr
+      %th Date/time
+      %th Description
+      
+  %tbody
+    - @events.each do |event|
+      %tr
+        %td= event.time 
+        %td= event.description

@@ -1,0 +1,13 @@
+-# edit.html.haml using partial
+
+%h1 Edit Existing External System
+
+= form_tag external_system_path(@system), :method => :put do
+
+  = label :system, :name, 'Name'
+  = text_field :system, 'name'
+
+  = label :system, :auth_token, 'Authentication token'
+  = text_field :system, :auth_token
+
+  = submit_tag 'Update External System Info'

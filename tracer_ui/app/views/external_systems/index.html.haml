@@ -1,0 +1,16 @@
+-#  This file is app/views/external_systems/index.html.haml
+%h1 All Registered External Systems
+
+%table#systems
+  %thead
+    %tr
+      %th Name
+      %th Authentication token
+      %th More
+  %tbody
+    - @systems.each do |system|
+      %tr
+        %td= system.name
+        %td= system.auth_token
+        %td= link_to "More about #{system.name}", external_system_path(system)
+= link_to "Add new system", new_external_system_path
