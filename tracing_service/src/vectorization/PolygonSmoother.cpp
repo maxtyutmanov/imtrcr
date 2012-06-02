@@ -81,7 +81,7 @@ namespace Vectorization {
         StraightLineEquation prev_next(prev, next);
 
         if (prev_next.IntersectsSquare(unitSquare)) {
-            if (ctx.opts.angularity != 0) {
+            if (ctx.opts.angularity != 100) {
                 useBezier = true;
                 z1 = Point2F::GetMidpoint(prev, cur);
                 z2 = Point2F::GetMidpoint(cur, next);
